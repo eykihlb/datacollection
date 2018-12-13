@@ -1,0 +1,2554 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mydao.datacollection.dao.server.ConsumeWasteMapper" >
+  <resultMap id="BaseResultMap" type="com.mydao.datacollection.entity.server.ConsumeWaste" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="EntryNetNo" property="entrynetno" jdbcType="VARCHAR" />
+    <result column="EntryPlazaNo" property="entryplazano" jdbcType="VARCHAR" />
+    <result column="EntryTime" property="entrytime" jdbcType="VARCHAR" />
+    <result column="NetNo" property="netno" jdbcType="VARCHAR" />
+    <result column="PlazaNo" property="plazano" jdbcType="VARCHAR" />
+    <result column="ExitTime" property="exittime" jdbcType="VARCHAR" />
+    <result column="ExitLane" property="exitlane" jdbcType="VARCHAR" />
+    <result column="CarPlate" property="carplate" jdbcType="VARCHAR" />
+    <result column="CarType" property="cartype" jdbcType="VARCHAR" />
+    <result column="CarClass" property="carclass" jdbcType="VARCHAR" />
+    <result column="Course" property="course" jdbcType="VARCHAR" />
+    <result column="AxleCount" property="axlecount" jdbcType="INTEGER" />
+    <result column="AxleType" property="axletype" jdbcType="VARCHAR" />
+    <result column="WeightCount" property="weightcount" jdbcType="VARCHAR" />
+    <result column="WeightLimit" property="weightlimit" jdbcType="INTEGER" />
+    <result column="OverLoadWeightRate" property="overloadweightrate" jdbcType="VARCHAR" />
+    <result column="IsGreed" property="isgreed" jdbcType="VARCHAR" />
+    <result column="FreeType" property="freetype" jdbcType="VARCHAR" />
+    <result column="TokenStationList" property="tokenstationlist" jdbcType="VARCHAR" />
+    <result column="IsETC" property="isetc" jdbcType="VARCHAR" />
+    <result column="OBU" property="obu" jdbcType="VARCHAR" />
+    <result column="PayType" property="paytype" jdbcType="VARCHAR" />
+    <result column="TollFare" property="tollfare" jdbcType="DECIMAL" />
+    <result column="ActualPay" property="actualpay" jdbcType="DECIMAL" />
+    <result column="UploadTime" property="uploadtime" jdbcType="TIMESTAMP" />
+    <result column="SendTime" property="sendtime" jdbcType="TIMESTAMP" />
+    <result column="SendFlag" property="sendflag" jdbcType="VARCHAR" />
+    <result column="HourSumID" property="hoursumid" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, EntryNetNo, EntryPlazaNo, EntryTime, NetNo, PlazaNo, ExitTime, ExitLane, CarPlate, 
+    CarType, CarClass, Course, AxleCount, AxleType, WeightCount, WeightLimit, OverLoadWeightRate, 
+    IsGreed, FreeType, TokenStationList, IsETC, OBU, PayType, TollFare, ActualPay, UploadTime, 
+    SendTime, SendFlag, HourSumID
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from ConsumeWaste01
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from ConsumeWaste01
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insertSelective01" parameterType="com.mydao.datacollection.entity.server.ConsumeWaste" >
+    insert into ConsumeWaste01
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="entrynetno != null" >
+        EntryNetNo,
+      </if>
+      <if test="entryplazano != null" >
+        EntryPlazaNo,
+      </if>
+      <if test="entrytime != null" >
+        EntryTime,
+      </if>
+      <if test="netno != null" >
+        NetNo,
+      </if>
+      <if test="plazano != null" >
+        PlazaNo,
+      </if>
+      <if test="exittime != null" >
+        ExitTime,
+      </if>
+      <if test="exitlane != null" >
+        ExitLane,
+      </if>
+      <if test="carplate != null" >
+        CarPlate,
+      </if>
+      <if test="cartype != null" >
+        CarType,
+      </if>
+      <if test="carclass != null" >
+        CarClass,
+      </if>
+      <if test="course != null" >
+        Course,
+      </if>
+      <if test="axlecount != null" >
+        AxleCount,
+      </if>
+      <if test="axletype != null" >
+        AxleType,
+      </if>
+      <if test="weightcount != null" >
+        WeightCount,
+      </if>
+      <if test="weightlimit != null" >
+        WeightLimit,
+      </if>
+      <if test="overloadweightrate != null" >
+        OverLoadWeightRate,
+      </if>
+      <if test="isgreed != null" >
+        IsGreed,
+      </if>
+      <if test="freetype != null" >
+        FreeType,
+      </if>
+      <if test="tokenstationlist != null" >
+        TokenStationList,
+      </if>
+      <if test="isetc != null" >
+        IsETC,
+      </if>
+      <if test="obu != null" >
+        OBU,
+      </if>
+      <if test="paytype != null" >
+        PayType,
+      </if>
+      <if test="tollfare != null" >
+        TollFare,
+      </if>
+      <if test="actualpay != null" >
+        ActualPay,
+      </if>
+      <if test="uploadtime != null" >
+        UploadTime,
+      </if>
+      <if test="sendtime != null" >
+        SendTime,
+      </if>
+      <if test="sendflag != null" >
+        SendFlag,
+      </if>
+      <if test="hoursumid != null" >
+        HourSumID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="entrynetno != null" >
+        #{entrynetno,jdbcType=VARCHAR},
+      </if>
+      <if test="entryplazano != null" >
+        #{entryplazano,jdbcType=VARCHAR},
+      </if>
+      <if test="entrytime != null" >
+        #{entrytime,jdbcType=VARCHAR},
+      </if>
+      <if test="netno != null" >
+        #{netno,jdbcType=VARCHAR},
+      </if>
+      <if test="plazano != null" >
+        #{plazano,jdbcType=VARCHAR},
+      </if>
+      <if test="exittime != null" >
+        #{exittime,jdbcType=VARCHAR},
+      </if>
+      <if test="exitlane != null" >
+        #{exitlane,jdbcType=VARCHAR},
+      </if>
+      <if test="carplate != null" >
+        #{carplate,jdbcType=VARCHAR},
+      </if>
+      <if test="cartype != null" >
+        #{cartype,jdbcType=VARCHAR},
+      </if>
+      <if test="carclass != null" >
+        #{carclass,jdbcType=VARCHAR},
+      </if>
+      <if test="course != null" >
+        #{course,jdbcType=VARCHAR},
+      </if>
+      <if test="axlecount != null" >
+        #{axlecount,jdbcType=INTEGER},
+      </if>
+      <if test="axletype != null" >
+        #{axletype,jdbcType=VARCHAR},
+      </if>
+      <if test="weightcount != null" >
+        #{weightcount,jdbcType=VARCHAR},
+      </if>
+      <if test="weightlimit != null" >
+        #{weightlimit,jdbcType=INTEGER},
+      </if>
+      <if test="overloadweightrate != null" >
+        #{overloadweightrate,jdbcType=VARCHAR},
+      </if>
+      <if test="isgreed != null" >
+        #{isgreed,jdbcType=VARCHAR},
+      </if>
+      <if test="freetype != null" >
+        #{freetype,jdbcType=VARCHAR},
+      </if>
+      <if test="tokenstationlist != null" >
+        #{tokenstationlist,jdbcType=VARCHAR},
+      </if>
+      <if test="isetc != null" >
+        #{isetc,jdbcType=VARCHAR},
+      </if>
+      <if test="obu != null" >
+        #{obu,jdbcType=VARCHAR},
+      </if>
+      <if test="paytype != null" >
+        #{paytype,jdbcType=VARCHAR},
+      </if>
+      <if test="tollfare != null" >
+        #{tollfare,jdbcType=DECIMAL},
+      </if>
+      <if test="actualpay != null" >
+        #{actualpay,jdbcType=DECIMAL},
+      </if>
+      <if test="uploadtime != null" >
+        #{uploadtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sendtime != null" >
+        #{sendtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sendflag != null" >
+        #{sendflag,jdbcType=VARCHAR},
+      </if>
+      <if test="hoursumid != null" >
+        #{hoursumid,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <insert id="insertSelective02" parameterType="com.mydao.datacollection.entity.server.ConsumeWaste" >
+    insert into ConsumeWaste02
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="entrynetno != null" >
+        EntryNetNo,
+      </if>
+      <if test="entryplazano != null" >
+        EntryPlazaNo,
+      </if>
+      <if test="entrytime != null" >
+        EntryTime,
+      </if>
+      <if test="netno != null" >
+        NetNo,
+      </if>
+      <if test="plazano != null" >
+        PlazaNo,
+      </if>
+      <if test="exittime != null" >
+        ExitTime,
+      </if>
+      <if test="exitlane != null" >
+        ExitLane,
+      </if>
+      <if test="carplate != null" >
+        CarPlate,
+      </if>
+      <if test="cartype != null" >
+        CarType,
+      </if>
+      <if test="carclass != null" >
+        CarClass,
+      </if>
+      <if test="course != null" >
+        Course,
+      </if>
+      <if test="axlecount != null" >
+        AxleCount,
+      </if>
+      <if test="axletype != null" >
+        AxleType,
+      </if>
+      <if test="weightcount != null" >
+        WeightCount,
+      </if>
+      <if test="weightlimit != null" >
+        WeightLimit,
+      </if>
+      <if test="overloadweightrate != null" >
+        OverLoadWeightRate,
+      </if>
+      <if test="isgreed != null" >
+        IsGreed,
+      </if>
+      <if test="freetype != null" >
+        FreeType,
+      </if>
+      <if test="tokenstationlist != null" >
+        TokenStationList,
+      </if>
+      <if test="isetc != null" >
+        IsETC,
+      </if>
+      <if test="obu != null" >
+        OBU,
+      </if>
+      <if test="paytype != null" >
+        PayType,
+      </if>
+      <if test="tollfare != null" >
+        TollFare,
+      </if>
+      <if test="actualpay != null" >
+        ActualPay,
+      </if>
+      <if test="uploadtime != null" >
+        UploadTime,
+      </if>
+      <if test="sendtime != null" >
+        SendTime,
+      </if>
+      <if test="sendflag != null" >
+        SendFlag,
+      </if>
+      <if test="hoursumid != null" >
+        HourSumID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="entrynetno != null" >
+        #{entrynetno,jdbcType=VARCHAR},
+      </if>
+      <if test="entryplazano != null" >
+        #{entryplazano,jdbcType=VARCHAR},
+      </if>
+      <if test="entrytime != null" >
+        #{entrytime,jdbcType=VARCHAR},
+      </if>
+      <if test="netno != null" >
+        #{netno,jdbcType=VARCHAR},
+      </if>
+      <if test="plazano != null" >
+        #{plazano,jdbcType=VARCHAR},
+      </if>
+      <if test="exittime != null" >
+        #{exittime,jdbcType=VARCHAR},
+      </if>
+      <if test="exitlane != null" >
+        #{exitlane,jdbcType=VARCHAR},
+      </if>
+      <if test="carplate != null" >
+        #{carplate,jdbcType=VARCHAR},
+      </if>
+      <if test="cartype != null" >
+        #{cartype,jdbcType=VARCHAR},
+      </if>
+      <if test="carclass != null" >
+        #{carclass,jdbcType=VARCHAR},
+      </if>
+      <if test="course != null" >
+        #{course,jdbcType=VARCHAR},
+      </if>
+      <if test="axlecount != null" >
+        #{axlecount,jdbcType=INTEGER},
+      </if>
+      <if test="axletype != null" >
+        #{axletype,jdbcType=VARCHAR},
+      </if>
+      <if test="weightcount != null" >
+        #{weightcount,jdbcType=VARCHAR},
+      </if>
+      <if test="weightlimit != null" >
+        #{weightlimit,jdbcType=INTEGER},
+      </if>
+      <if test="overloadweightrate != null" >
+        #{overloadweightrate,jdbcType=VARCHAR},
+      </if>
+      <if test="isgreed != null" >
+        #{isgreed,jdbcType=VARCHAR},
+      </if>
+      <if test="freetype != null" >
+        #{freetype,jdbcType=VARCHAR},
+      </if>
+      <if test="tokenstationlist != null" >
+        #{tokenstationlist,jdbcType=VARCHAR},
+      </if>
+      <if test="isetc != null" >
+        #{isetc,jdbcType=VARCHAR},
+      </if>
+      <if test="obu != null" >
+        #{obu,jdbcType=VARCHAR},
+      </if>
+      <if test="paytype != null" >
+        #{paytype,jdbcType=VARCHAR},
+      </if>
+      <if test="tollfare != null" >
+        #{tollfare,jdbcType=DECIMAL},
+      </if>
+      <if test="actualpay != null" >
+        #{actualpay,jdbcType=DECIMAL},
+      </if>
+      <if test="uploadtime != null" >
+        #{uploadtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sendtime != null" >
+        #{sendtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sendflag != null" >
+        #{sendflag,jdbcType=VARCHAR},
+      </if>
+      <if test="hoursumid != null" >
+        #{hoursumid,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <insert id="insertSelective03" parameterType="com.mydao.datacollection.entity.server.ConsumeWaste" >
+    insert into ConsumeWaste03
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="entrynetno != null" >
+        EntryNetNo,
+      </if>
+      <if test="entryplazano != null" >
+        EntryPlazaNo,
+      </if>
+      <if test="entrytime != null" >
+        EntryTime,
+      </if>
+      <if test="netno != null" >
+        NetNo,
+      </if>
+      <if test="plazano != null" >
+        PlazaNo,
+      </if>
+      <if test="exittime != null" >
+        ExitTime,
+      </if>
+      <if test="exitlane != null" >
+        ExitLane,
+      </if>
+      <if test="carplate != null" >
+        CarPlate,
+      </if>
+      <if test="cartype != null" >
+        CarType,
+      </if>
+      <if test="carclass != null" >
+        CarClass,
+      </if>
+      <if test="course != null" >
+        Course,
+      </if>
+      <if test="axlecount != null" >
+        AxleCount,
+      </if>
+      <if test="axletype != null" >
+        AxleType,
+      </if>
+      <if test="weightcount != null" >
+        WeightCount,
+      </if>
+      <if test="weightlimit != null" >
+        WeightLimit,
+      </if>
+      <if test="overloadweightrate != null" >
+        OverLoadWeightRate,
+      </if>
+      <if test="isgreed != null" >
+        IsGreed,
+      </if>
+      <if test="freetype != null" >
+        FreeType,
+      </if>
+      <if test="tokenstationlist != null" >
+        TokenStationList,
+      </if>
+      <if test="isetc != null" >
+        IsETC,
+      </if>
+      <if test="obu != null" >
+        OBU,
+      </if>
+      <if test="paytype != null" >
+        PayType,
+      </if>
+      <if test="tollfare != null" >
+        TollFare,
+      </if>
+      <if test="actualpay != null" >
+        ActualPay,
+      </if>
+      <if test="uploadtime != null" >
+        UploadTime,
+      </if>
+      <if test="sendtime != null" >
+        SendTime,
+      </if>
+      <if test="sendflag != null" >
+        SendFlag,
+      </if>
+      <if test="hoursumid != null" >
+        HourSumID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="entrynetno != null" >
+        #{entrynetno,jdbcType=VARCHAR},
+      </if>
+      <if test="entryplazano != null" >
+        #{entryplazano,jdbcType=VARCHAR},
+      </if>
+      <if test="entrytime != null" >
+        #{entrytime,jdbcType=VARCHAR},
+      </if>
+      <if test="netno != null" >
+        #{netno,jdbcType=VARCHAR},
+      </if>
+      <if test="plazano != null" >
+        #{plazano,jdbcType=VARCHAR},
+      </if>
+      <if test="exittime != null" >
+        #{exittime,jdbcType=VARCHAR},
+      </if>
+      <if test="exitlane != null" >
+        #{exitlane,jdbcType=VARCHAR},
+      </if>
+      <if test="carplate != null" >
+        #{carplate,jdbcType=VARCHAR},
+      </if>
+      <if test="cartype != null" >
+        #{cartype,jdbcType=VARCHAR},
+      </if>
+      <if test="carclass != null" >
+        #{carclass,jdbcType=VARCHAR},
+      </if>
+      <if test="course != null" >
+        #{course,jdbcType=VARCHAR},
+      </if>
+      <if test="axlecount != null" >
+        #{axlecount,jdbcType=INTEGER},
+      </if>
+      <if test="axletype != null" >
+        #{axletype,jdbcType=VARCHAR},
+      </if>
+      <if test="weightcount != null" >
+        #{weightcount,jdbcType=VARCHAR},
+      </if>
+      <if test="weightlimit != null" >
+        #{weightlimit,jdbcType=INTEGER},
+      </if>
+      <if test="overloadweightrate != null" >
+        #{overloadweightrate,jdbcType=VARCHAR},
+      </if>
+      <if test="isgreed != null" >
+        #{isgreed,jdbcType=VARCHAR},
+      </if>
+      <if test="freetype != null" >
+        #{freetype,jdbcType=VARCHAR},
+      </if>
+      <if test="tokenstationlist != null" >
+        #{tokenstationlist,jdbcType=VARCHAR},
+      </if>
+      <if test="isetc != null" >
+        #{isetc,jdbcType=VARCHAR},
+      </if>
+      <if test="obu != null" >
+        #{obu,jdbcType=VARCHAR},
+      </if>
+      <if test="paytype != null" >
+        #{paytype,jdbcType=VARCHAR},
+      </if>
+      <if test="tollfare != null" >
+        #{tollfare,jdbcType=DECIMAL},
+      </if>
+      <if test="actualpay != null" >
+        #{actualpay,jdbcType=DECIMAL},
+      </if>
+      <if test="uploadtime != null" >
+        #{uploadtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sendtime != null" >
+        #{sendtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sendflag != null" >
+        #{sendflag,jdbcType=VARCHAR},
+      </if>
+      <if test="hoursumid != null" >
+        #{hoursumid,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <insert id="insertSelective04" parameterType="com.mydao.datacollection.entity.server.ConsumeWaste" >
+    insert into ConsumeWaste04
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="entrynetno != null" >
+        EntryNetNo,
+      </if>
+      <if test="entryplazano != null" >
+        EntryPlazaNo,
+      </if>
+      <if test="entrytime != null" >
+        EntryTime,
+      </if>
+      <if test="netno != null" >
+        NetNo,
+      </if>
+      <if test="plazano != null" >
+        PlazaNo,
+      </if>
+      <if test="exittime != null" >
+        ExitTime,
+      </if>
+      <if test="exitlane != null" >
+        ExitLane,
+      </if>
+      <if test="carplate != null" >
+        CarPlate,
+      </if>
+      <if test="cartype != null" >
+        CarType,
+      </if>
+      <if test="carclass != null" >
+        CarClass,
+      </if>
+      <if test="course != null" >
+        Course,
+      </if>
+      <if test="axlecount != null" >
+        AxleCount,
+      </if>
+      <if test="axletype != null" >
+        AxleType,
+      </if>
+      <if test="weightcount != null" >
+        WeightCount,
+      </if>
+      <if test="weightlimit != null" >
+        WeightLimit,
+      </if>
+      <if test="overloadweightrate != null" >
+        OverLoadWeightRate,
+      </if>
+      <if test="isgreed != null" >
+        IsGreed,
+      </if>
+      <if test="freetype != null" >
+        FreeType,
+      </if>
+      <if test="tokenstationlist != null" >
+        TokenStationList,
+      </if>
+      <if test="isetc != null" >
+        IsETC,
+      </if>
+      <if test="obu != null" >
+        OBU,
+      </if>
+      <if test="paytype != null" >
+        PayType,
+      </if>
+      <if test="tollfare != null" >
+        TollFare,
+      </if>
+      <if test="actualpay != null" >
+        ActualPay,
+      </if>
+      <if test="uploadtime != null" >
+        UploadTime,
+      </if>
+      <if test="sendtime != null" >
+        SendTime,
+      </if>
+      <if test="sendflag != null" >
+        SendFlag,
+      </if>
+      <if test="hoursumid != null" >
+        HourSumID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="entrynetno != null" >
+        #{entrynetno,jdbcType=VARCHAR},
+      </if>
+      <if test="entryplazano != null" >
+        #{entryplazano,jdbcType=VARCHAR},
+      </if>
+      <if test="entrytime != null" >
+        #{entrytime,jdbcType=VARCHAR},
+      </if>
+      <if test="netno != null" >
+        #{netno,jdbcType=VARCHAR},
+      </if>
+      <if test="plazano != null" >
+        #{plazano,jdbcType=VARCHAR},
+      </if>
+      <if test="exittime != null" >
+        #{exittime,jdbcType=VARCHAR},
+      </if>
+      <if test="exitlane != null" >
+        #{exitlane,jdbcType=VARCHAR},
+      </if>
+      <if test="carplate != null" >
+        #{carplate,jdbcType=VARCHAR},
+      </if>
+      <if test="cartype != null" >
+        #{cartype,jdbcType=VARCHAR},
+      </if>
+      <if test="carclass != null" >
+        #{carclass,jdbcType=VARCHAR},
+      </if>
+      <if test="course != null" >
+        #{course,jdbcType=VARCHAR},
+      </if>
+      <if test="axlecount != null" >
+        #{axlecount,jdbcType=INTEGER},
+      </if>
+      <if test="axletype != null" >
+        #{axletype,jdbcType=VARCHAR},
+      </if>
+      <if test="weightcount != null" >
+        #{weightcount,jdbcType=VARCHAR},
+      </if>
+      <if test="weightlimit != null" >
+        #{weightlimit,jdbcType=INTEGER},
+      </if>
+      <if test="overloadweightrate != null" >
+        #{overloadweightrate,jdbcType=VARCHAR},
+      </if>
+      <if test="isgreed != null" >
+        #{isgreed,jdbcType=VARCHAR},
+      </if>
+      <if test="freetype != null" >
+        #{freetype,jdbcType=VARCHAR},
+      </if>
+      <if test="tokenstationlist != null" >
+        #{tokenstationlist,jdbcType=VARCHAR},
+      </if>
+      <if test="isetc != null" >
+        #{isetc,jdbcType=VARCHAR},
+      </if>
+      <if test="obu != null" >
+        #{obu,jdbcType=VARCHAR},
+      </if>
+      <if test="paytype != null" >
+        #{paytype,jdbcType=VARCHAR},
+      </if>
+      <if test="tollfare != null" >
+        #{tollfare,jdbcType=DECIMAL},
+      </if>
+      <if test="actualpay != null" >
+        #{actualpay,jdbcType=DECIMAL},
+      </if>
+      <if test="uploadtime != null" >
+        #{uploadtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sendtime != null" >
+        #{sendtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sendflag != null" >
+        #{sendflag,jdbcType=VARCHAR},
+      </if>
+      <if test="hoursumid != null" >
+        #{hoursumid,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <insert id="insertSelective05" parameterType="com.mydao.datacollection.entity.server.ConsumeWaste" >
+    insert into ConsumeWaste05
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="entrynetno != null" >
+        EntryNetNo,
+      </if>
+      <if test="entryplazano != null" >
+        EntryPlazaNo,
+      </if>
+      <if test="entrytime != null" >
+        EntryTime,
+      </if>
+      <if test="netno != null" >
+        NetNo,
+      </if>
+      <if test="plazano != null" >
+        PlazaNo,
+      </if>
+      <if test="exittime != null" >
+        ExitTime,
+      </if>
+      <if test="exitlane != null" >
+        ExitLane,
+      </if>
+      <if test="carplate != null" >
+        CarPlate,
+      </if>
+      <if test="cartype != null" >
+        CarType,
+      </if>
+      <if test="carclass != null" >
+        CarClass,
+      </if>
+      <if test="course != null" >
+        Course,
+      </if>
+      <if test="axlecount != null" >
+        AxleCount,
+      </if>
+      <if test="axletype != null" >
+        AxleType,
+      </if>
+      <if test="weightcount != null" >
+        WeightCount,
+      </if>
+      <if test="weightlimit != null" >
+        WeightLimit,
+      </if>
+      <if test="overloadweightrate != null" >
+        OverLoadWeightRate,
+      </if>
+      <if test="isgreed != null" >
+        IsGreed,
+      </if>
+      <if test="freetype != null" >
+        FreeType,
+      </if>
+      <if test="tokenstationlist != null" >
+        TokenStationList,
+      </if>
+      <if test="isetc != null" >
+        IsETC,
+      </if>
+      <if test="obu != null" >
+        OBU,
+      </if>
+      <if test="paytype != null" >
+        PayType,
+      </if>
+      <if test="tollfare != null" >
+        TollFare,
+      </if>
+      <if test="actualpay != null" >
+        ActualPay,
+      </if>
+      <if test="uploadtime != null" >
+        UploadTime,
+      </if>
+      <if test="sendtime != null" >
+        SendTime,
+      </if>
+      <if test="sendflag != null" >
+        SendFlag,
+      </if>
+      <if test="hoursumid != null" >
+        HourSumID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="entrynetno != null" >
+        #{entrynetno,jdbcType=VARCHAR},
+      </if>
+      <if test="entryplazano != null" >
+        #{entryplazano,jdbcType=VARCHAR},
+      </if>
+      <if test="entrytime != null" >
+        #{entrytime,jdbcType=VARCHAR},
+      </if>
+      <if test="netno != null" >
+        #{netno,jdbcType=VARCHAR},
+      </if>
+      <if test="plazano != null" >
+        #{plazano,jdbcType=VARCHAR},
+      </if>
+      <if test="exittime != null" >
+        #{exittime,jdbcType=VARCHAR},
+      </if>
+      <if test="exitlane != null" >
+        #{exitlane,jdbcType=VARCHAR},
+      </if>
+      <if test="carplate != null" >
+        #{carplate,jdbcType=VARCHAR},
+      </if>
+      <if test="cartype != null" >
+        #{cartype,jdbcType=VARCHAR},
+      </if>
+      <if test="carclass != null" >
+        #{carclass,jdbcType=VARCHAR},
+      </if>
+      <if test="course != null" >
+        #{course,jdbcType=VARCHAR},
+      </if>
+      <if test="axlecount != null" >
+        #{axlecount,jdbcType=INTEGER},
+      </if>
+      <if test="axletype != null" >
+        #{axletype,jdbcType=VARCHAR},
+      </if>
+      <if test="weightcount != null" >
+        #{weightcount,jdbcType=VARCHAR},
+      </if>
+      <if test="weightlimit != null" >
+        #{weightlimit,jdbcType=INTEGER},
+      </if>
+      <if test="overloadweightrate != null" >
+        #{overloadweightrate,jdbcType=VARCHAR},
+      </if>
+      <if test="isgreed != null" >
+        #{isgreed,jdbcType=VARCHAR},
+      </if>
+      <if test="freetype != null" >
+        #{freetype,jdbcType=VARCHAR},
+      </if>
+      <if test="tokenstationlist != null" >
+        #{tokenstationlist,jdbcType=VARCHAR},
+      </if>
+      <if test="isetc != null" >
+        #{isetc,jdbcType=VARCHAR},
+      </if>
+      <if test="obu != null" >
+        #{obu,jdbcType=VARCHAR},
+      </if>
+      <if test="paytype != null" >
+        #{paytype,jdbcType=VARCHAR},
+      </if>
+      <if test="tollfare != null" >
+        #{tollfare,jdbcType=DECIMAL},
+      </if>
+      <if test="actualpay != null" >
+        #{actualpay,jdbcType=DECIMAL},
+      </if>
+      <if test="uploadtime != null" >
+        #{uploadtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sendtime != null" >
+        #{sendtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sendflag != null" >
+        #{sendflag,jdbcType=VARCHAR},
+      </if>
+      <if test="hoursumid != null" >
+        #{hoursumid,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <insert id="insertSelective06" parameterType="com.mydao.datacollection.entity.server.ConsumeWaste" >
+    insert into ConsumeWaste06
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="entrynetno != null" >
+        EntryNetNo,
+      </if>
+      <if test="entryplazano != null" >
+        EntryPlazaNo,
+      </if>
+      <if test="entrytime != null" >
+        EntryTime,
+      </if>
+      <if test="netno != null" >
+        NetNo,
+      </if>
+      <if test="plazano != null" >
+        PlazaNo,
+      </if>
+      <if test="exittime != null" >
+        ExitTime,
+      </if>
+      <if test="exitlane != null" >
+        ExitLane,
+      </if>
+      <if test="carplate != null" >
+        CarPlate,
+      </if>
+      <if test="cartype != null" >
+        CarType,
+      </if>
+      <if test="carclass != null" >
+        CarClass,
+      </if>
+      <if test="course != null" >
+        Course,
+      </if>
+      <if test="axlecount != null" >
+        AxleCount,
+      </if>
+      <if test="axletype != null" >
+        AxleType,
+      </if>
+      <if test="weightcount != null" >
+        WeightCount,
+      </if>
+      <if test="weightlimit != null" >
+        WeightLimit,
+      </if>
+      <if test="overloadweightrate != null" >
+        OverLoadWeightRate,
+      </if>
+      <if test="isgreed != null" >
+        IsGreed,
+      </if>
+      <if test="freetype != null" >
+        FreeType,
+      </if>
+      <if test="tokenstationlist != null" >
+        TokenStationList,
+      </if>
+      <if test="isetc != null" >
+        IsETC,
+      </if>
+      <if test="obu != null" >
+        OBU,
+      </if>
+      <if test="paytype != null" >
+        PayType,
+      </if>
+      <if test="tollfare != null" >
+        TollFare,
+      </if>
+      <if test="actualpay != null" >
+        ActualPay,
+      </if>
+      <if test="uploadtime != null" >
+        UploadTime,
+      </if>
+      <if test="sendtime != null" >
+        SendTime,
+      </if>
+      <if test="sendflag != null" >
+        SendFlag,
+      </if>
+      <if test="hoursumid != null" >
+        HourSumID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="entrynetno != null" >
+        #{entrynetno,jdbcType=VARCHAR},
+      </if>
+      <if test="entryplazano != null" >
+        #{entryplazano,jdbcType=VARCHAR},
+      </if>
+      <if test="entrytime != null" >
+        #{entrytime,jdbcType=VARCHAR},
+      </if>
+      <if test="netno != null" >
+        #{netno,jdbcType=VARCHAR},
+      </if>
+      <if test="plazano != null" >
+        #{plazano,jdbcType=VARCHAR},
+      </if>
+      <if test="exittime != null" >
+        #{exittime,jdbcType=VARCHAR},
+      </if>
+      <if test="exitlane != null" >
+        #{exitlane,jdbcType=VARCHAR},
+      </if>
+      <if test="carplate != null" >
+        #{carplate,jdbcType=VARCHAR},
+      </if>
+      <if test="cartype != null" >
+        #{cartype,jdbcType=VARCHAR},
+      </if>
+      <if test="carclass != null" >
+        #{carclass,jdbcType=VARCHAR},
+      </if>
+      <if test="course != null" >
+        #{course,jdbcType=VARCHAR},
+      </if>
+      <if test="axlecount != null" >
+        #{axlecount,jdbcType=INTEGER},
+      </if>
+      <if test="axletype != null" >
+        #{axletype,jdbcType=VARCHAR},
+      </if>
+      <if test="weightcount != null" >
+        #{weightcount,jdbcType=VARCHAR},
+      </if>
+      <if test="weightlimit != null" >
+        #{weightlimit,jdbcType=INTEGER},
+      </if>
+      <if test="overloadweightrate != null" >
+        #{overloadweightrate,jdbcType=VARCHAR},
+      </if>
+      <if test="isgreed != null" >
+        #{isgreed,jdbcType=VARCHAR},
+      </if>
+      <if test="freetype != null" >
+        #{freetype,jdbcType=VARCHAR},
+      </if>
+      <if test="tokenstationlist != null" >
+        #{tokenstationlist,jdbcType=VARCHAR},
+      </if>
+      <if test="isetc != null" >
+        #{isetc,jdbcType=VARCHAR},
+      </if>
+      <if test="obu != null" >
+        #{obu,jdbcType=VARCHAR},
+      </if>
+      <if test="paytype != null" >
+        #{paytype,jdbcType=VARCHAR},
+      </if>
+      <if test="tollfare != null" >
+        #{tollfare,jdbcType=DECIMAL},
+      </if>
+      <if test="actualpay != null" >
+        #{actualpay,jdbcType=DECIMAL},
+      </if>
+      <if test="uploadtime != null" >
+        #{uploadtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sendtime != null" >
+        #{sendtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sendflag != null" >
+        #{sendflag,jdbcType=VARCHAR},
+      </if>
+      <if test="hoursumid != null" >
+        #{hoursumid,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <insert id="insertSelective07" parameterType="com.mydao.datacollection.entity.server.ConsumeWaste" >
+    insert into ConsumeWaste07
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="entrynetno != null" >
+        EntryNetNo,
+      </if>
+      <if test="entryplazano != null" >
+        EntryPlazaNo,
+      </if>
+      <if test="entrytime != null" >
+        EntryTime,
+      </if>
+      <if test="netno != null" >
+        NetNo,
+      </if>
+      <if test="plazano != null" >
+        PlazaNo,
+      </if>
+      <if test="exittime != null" >
+        ExitTime,
+      </if>
+      <if test="exitlane != null" >
+        ExitLane,
+      </if>
+      <if test="carplate != null" >
+        CarPlate,
+      </if>
+      <if test="cartype != null" >
+        CarType,
+      </if>
+      <if test="carclass != null" >
+        CarClass,
+      </if>
+      <if test="course != null" >
+        Course,
+      </if>
+      <if test="axlecount != null" >
+        AxleCount,
+      </if>
+      <if test="axletype != null" >
+        AxleType,
+      </if>
+      <if test="weightcount != null" >
+        WeightCount,
+      </if>
+      <if test="weightlimit != null" >
+        WeightLimit,
+      </if>
+      <if test="overloadweightrate != null" >
+        OverLoadWeightRate,
+      </if>
+      <if test="isgreed != null" >
+        IsGreed,
+      </if>
+      <if test="freetype != null" >
+        FreeType,
+      </if>
+      <if test="tokenstationlist != null" >
+        TokenStationList,
+      </if>
+      <if test="isetc != null" >
+        IsETC,
+      </if>
+      <if test="obu != null" >
+        OBU,
+      </if>
+      <if test="paytype != null" >
+        PayType,
+      </if>
+      <if test="tollfare != null" >
+        TollFare,
+      </if>
+      <if test="actualpay != null" >
+        ActualPay,
+      </if>
+      <if test="uploadtime != null" >
+        UploadTime,
+      </if>
+      <if test="sendtime != null" >
+        SendTime,
+      </if>
+      <if test="sendflag != null" >
+        SendFlag,
+      </if>
+      <if test="hoursumid != null" >
+        HourSumID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="entrynetno != null" >
+        #{entrynetno,jdbcType=VARCHAR},
+      </if>
+      <if test="entryplazano != null" >
+        #{entryplazano,jdbcType=VARCHAR},
+      </if>
+      <if test="entrytime != null" >
+        #{entrytime,jdbcType=VARCHAR},
+      </if>
+      <if test="netno != null" >
+        #{netno,jdbcType=VARCHAR},
+      </if>
+      <if test="plazano != null" >
+        #{plazano,jdbcType=VARCHAR},
+      </if>
+      <if test="exittime != null" >
+        #{exittime,jdbcType=VARCHAR},
+      </if>
+      <if test="exitlane != null" >
+        #{exitlane,jdbcType=VARCHAR},
+      </if>
+      <if test="carplate != null" >
+        #{carplate,jdbcType=VARCHAR},
+      </if>
+      <if test="cartype != null" >
+        #{cartype,jdbcType=VARCHAR},
+      </if>
+      <if test="carclass != null" >
+        #{carclass,jdbcType=VARCHAR},
+      </if>
+      <if test="course != null" >
+        #{course,jdbcType=VARCHAR},
+      </if>
+      <if test="axlecount != null" >
+        #{axlecount,jdbcType=INTEGER},
+      </if>
+      <if test="axletype != null" >
+        #{axletype,jdbcType=VARCHAR},
+      </if>
+      <if test="weightcount != null" >
+        #{weightcount,jdbcType=VARCHAR},
+      </if>
+      <if test="weightlimit != null" >
+        #{weightlimit,jdbcType=INTEGER},
+      </if>
+      <if test="overloadweightrate != null" >
+        #{overloadweightrate,jdbcType=VARCHAR},
+      </if>
+      <if test="isgreed != null" >
+        #{isgreed,jdbcType=VARCHAR},
+      </if>
+      <if test="freetype != null" >
+        #{freetype,jdbcType=VARCHAR},
+      </if>
+      <if test="tokenstationlist != null" >
+        #{tokenstationlist,jdbcType=VARCHAR},
+      </if>
+      <if test="isetc != null" >
+        #{isetc,jdbcType=VARCHAR},
+      </if>
+      <if test="obu != null" >
+        #{obu,jdbcType=VARCHAR},
+      </if>
+      <if test="paytype != null" >
+        #{paytype,jdbcType=VARCHAR},
+      </if>
+      <if test="tollfare != null" >
+        #{tollfare,jdbcType=DECIMAL},
+      </if>
+      <if test="actualpay != null" >
+        #{actualpay,jdbcType=DECIMAL},
+      </if>
+      <if test="uploadtime != null" >
+        #{uploadtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sendtime != null" >
+        #{sendtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sendflag != null" >
+        #{sendflag,jdbcType=VARCHAR},
+      </if>
+      <if test="hoursumid != null" >
+        #{hoursumid,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <insert id="insertSelective08" parameterType="com.mydao.datacollection.entity.server.ConsumeWaste" >
+    insert into ConsumeWaste08
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="entrynetno != null" >
+        EntryNetNo,
+      </if>
+      <if test="entryplazano != null" >
+        EntryPlazaNo,
+      </if>
+      <if test="entrytime != null" >
+        EntryTime,
+      </if>
+      <if test="netno != null" >
+        NetNo,
+      </if>
+      <if test="plazano != null" >
+        PlazaNo,
+      </if>
+      <if test="exittime != null" >
+        ExitTime,
+      </if>
+      <if test="exitlane != null" >
+        ExitLane,
+      </if>
+      <if test="carplate != null" >
+        CarPlate,
+      </if>
+      <if test="cartype != null" >
+        CarType,
+      </if>
+      <if test="carclass != null" >
+        CarClass,
+      </if>
+      <if test="course != null" >
+        Course,
+      </if>
+      <if test="axlecount != null" >
+        AxleCount,
+      </if>
+      <if test="axletype != null" >
+        AxleType,
+      </if>
+      <if test="weightcount != null" >
+        WeightCount,
+      </if>
+      <if test="weightlimit != null" >
+        WeightLimit,
+      </if>
+      <if test="overloadweightrate != null" >
+        OverLoadWeightRate,
+      </if>
+      <if test="isgreed != null" >
+        IsGreed,
+      </if>
+      <if test="freetype != null" >
+        FreeType,
+      </if>
+      <if test="tokenstationlist != null" >
+        TokenStationList,
+      </if>
+      <if test="isetc != null" >
+        IsETC,
+      </if>
+      <if test="obu != null" >
+        OBU,
+      </if>
+      <if test="paytype != null" >
+        PayType,
+      </if>
+      <if test="tollfare != null" >
+        TollFare,
+      </if>
+      <if test="actualpay != null" >
+        ActualPay,
+      </if>
+      <if test="uploadtime != null" >
+        UploadTime,
+      </if>
+      <if test="sendtime != null" >
+        SendTime,
+      </if>
+      <if test="sendflag != null" >
+        SendFlag,
+      </if>
+      <if test="hoursumid != null" >
+        HourSumID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="entrynetno != null" >
+        #{entrynetno,jdbcType=VARCHAR},
+      </if>
+      <if test="entryplazano != null" >
+        #{entryplazano,jdbcType=VARCHAR},
+      </if>
+      <if test="entrytime != null" >
+        #{entrytime,jdbcType=VARCHAR},
+      </if>
+      <if test="netno != null" >
+        #{netno,jdbcType=VARCHAR},
+      </if>
+      <if test="plazano != null" >
+        #{plazano,jdbcType=VARCHAR},
+      </if>
+      <if test="exittime != null" >
+        #{exittime,jdbcType=VARCHAR},
+      </if>
+      <if test="exitlane != null" >
+        #{exitlane,jdbcType=VARCHAR},
+      </if>
+      <if test="carplate != null" >
+        #{carplate,jdbcType=VARCHAR},
+      </if>
+      <if test="cartype != null" >
+        #{cartype,jdbcType=VARCHAR},
+      </if>
+      <if test="carclass != null" >
+        #{carclass,jdbcType=VARCHAR},
+      </if>
+      <if test="course != null" >
+        #{course,jdbcType=VARCHAR},
+      </if>
+      <if test="axlecount != null" >
+        #{axlecount,jdbcType=INTEGER},
+      </if>
+      <if test="axletype != null" >
+        #{axletype,jdbcType=VARCHAR},
+      </if>
+      <if test="weightcount != null" >
+        #{weightcount,jdbcType=VARCHAR},
+      </if>
+      <if test="weightlimit != null" >
+        #{weightlimit,jdbcType=INTEGER},
+      </if>
+      <if test="overloadweightrate != null" >
+        #{overloadweightrate,jdbcType=VARCHAR},
+      </if>
+      <if test="isgreed != null" >
+        #{isgreed,jdbcType=VARCHAR},
+      </if>
+      <if test="freetype != null" >
+        #{freetype,jdbcType=VARCHAR},
+      </if>
+      <if test="tokenstationlist != null" >
+        #{tokenstationlist,jdbcType=VARCHAR},
+      </if>
+      <if test="isetc != null" >
+        #{isetc,jdbcType=VARCHAR},
+      </if>
+      <if test="obu != null" >
+        #{obu,jdbcType=VARCHAR},
+      </if>
+      <if test="paytype != null" >
+        #{paytype,jdbcType=VARCHAR},
+      </if>
+      <if test="tollfare != null" >
+        #{tollfare,jdbcType=DECIMAL},
+      </if>
+      <if test="actualpay != null" >
+        #{actualpay,jdbcType=DECIMAL},
+      </if>
+      <if test="uploadtime != null" >
+        #{uploadtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sendtime != null" >
+        #{sendtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sendflag != null" >
+        #{sendflag,jdbcType=VARCHAR},
+      </if>
+      <if test="hoursumid != null" >
+        #{hoursumid,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <insert id="insertSelective09" parameterType="com.mydao.datacollection.entity.server.ConsumeWaste" >
+    insert into ConsumeWaste09
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="entrynetno != null" >
+        EntryNetNo,
+      </if>
+      <if test="entryplazano != null" >
+        EntryPlazaNo,
+      </if>
+      <if test="entrytime != null" >
+        EntryTime,
+      </if>
+      <if test="netno != null" >
+        NetNo,
+      </if>
+      <if test="plazano != null" >
+        PlazaNo,
+      </if>
+      <if test="exittime != null" >
+        ExitTime,
+      </if>
+      <if test="exitlane != null" >
+        ExitLane,
+      </if>
+      <if test="carplate != null" >
+        CarPlate,
+      </if>
+      <if test="cartype != null" >
+        CarType,
+      </if>
+      <if test="carclass != null" >
+        CarClass,
+      </if>
+      <if test="course != null" >
+        Course,
+      </if>
+      <if test="axlecount != null" >
+        AxleCount,
+      </if>
+      <if test="axletype != null" >
+        AxleType,
+      </if>
+      <if test="weightcount != null" >
+        WeightCount,
+      </if>
+      <if test="weightlimit != null" >
+        WeightLimit,
+      </if>
+      <if test="overloadweightrate != null" >
+        OverLoadWeightRate,
+      </if>
+      <if test="isgreed != null" >
+        IsGreed,
+      </if>
+      <if test="freetype != null" >
+        FreeType,
+      </if>
+      <if test="tokenstationlist != null" >
+        TokenStationList,
+      </if>
+      <if test="isetc != null" >
+        IsETC,
+      </if>
+      <if test="obu != null" >
+        OBU,
+      </if>
+      <if test="paytype != null" >
+        PayType,
+      </if>
+      <if test="tollfare != null" >
+        TollFare,
+      </if>
+      <if test="actualpay != null" >
+        ActualPay,
+      </if>
+      <if test="uploadtime != null" >
+        UploadTime,
+      </if>
+      <if test="sendtime != null" >
+        SendTime,
+      </if>
+      <if test="sendflag != null" >
+        SendFlag,
+      </if>
+      <if test="hoursumid != null" >
+        HourSumID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="entrynetno != null" >
+        #{entrynetno,jdbcType=VARCHAR},
+      </if>
+      <if test="entryplazano != null" >
+        #{entryplazano,jdbcType=VARCHAR},
+      </if>
+      <if test="entrytime != null" >
+        #{entrytime,jdbcType=VARCHAR},
+      </if>
+      <if test="netno != null" >
+        #{netno,jdbcType=VARCHAR},
+      </if>
+      <if test="plazano != null" >
+        #{plazano,jdbcType=VARCHAR},
+      </if>
+      <if test="exittime != null" >
+        #{exittime,jdbcType=VARCHAR},
+      </if>
+      <if test="exitlane != null" >
+        #{exitlane,jdbcType=VARCHAR},
+      </if>
+      <if test="carplate != null" >
+        #{carplate,jdbcType=VARCHAR},
+      </if>
+      <if test="cartype != null" >
+        #{cartype,jdbcType=VARCHAR},
+      </if>
+      <if test="carclass != null" >
+        #{carclass,jdbcType=VARCHAR},
+      </if>
+      <if test="course != null" >
+        #{course,jdbcType=VARCHAR},
+      </if>
+      <if test="axlecount != null" >
+        #{axlecount,jdbcType=INTEGER},
+      </if>
+      <if test="axletype != null" >
+        #{axletype,jdbcType=VARCHAR},
+      </if>
+      <if test="weightcount != null" >
+        #{weightcount,jdbcType=VARCHAR},
+      </if>
+      <if test="weightlimit != null" >
+        #{weightlimit,jdbcType=INTEGER},
+      </if>
+      <if test="overloadweightrate != null" >
+        #{overloadweightrate,jdbcType=VARCHAR},
+      </if>
+      <if test="isgreed != null" >
+        #{isgreed,jdbcType=VARCHAR},
+      </if>
+      <if test="freetype != null" >
+        #{freetype,jdbcType=VARCHAR},
+      </if>
+      <if test="tokenstationlist != null" >
+        #{tokenstationlist,jdbcType=VARCHAR},
+      </if>
+      <if test="isetc != null" >
+        #{isetc,jdbcType=VARCHAR},
+      </if>
+      <if test="obu != null" >
+        #{obu,jdbcType=VARCHAR},
+      </if>
+      <if test="paytype != null" >
+        #{paytype,jdbcType=VARCHAR},
+      </if>
+      <if test="tollfare != null" >
+        #{tollfare,jdbcType=DECIMAL},
+      </if>
+      <if test="actualpay != null" >
+        #{actualpay,jdbcType=DECIMAL},
+      </if>
+      <if test="uploadtime != null" >
+        #{uploadtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sendtime != null" >
+        #{sendtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sendflag != null" >
+        #{sendflag,jdbcType=VARCHAR},
+      </if>
+      <if test="hoursumid != null" >
+        #{hoursumid,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <insert id="insertSelective10" parameterType="com.mydao.datacollection.entity.server.ConsumeWaste" >
+    insert into ConsumeWaste10
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="entrynetno != null" >
+        EntryNetNo,
+      </if>
+      <if test="entryplazano != null" >
+        EntryPlazaNo,
+      </if>
+      <if test="entrytime != null" >
+        EntryTime,
+      </if>
+      <if test="netno != null" >
+        NetNo,
+      </if>
+      <if test="plazano != null" >
+        PlazaNo,
+      </if>
+      <if test="exittime != null" >
+        ExitTime,
+      </if>
+      <if test="exitlane != null" >
+        ExitLane,
+      </if>
+      <if test="carplate != null" >
+        CarPlate,
+      </if>
+      <if test="cartype != null" >
+        CarType,
+      </if>
+      <if test="carclass != null" >
+        CarClass,
+      </if>
+      <if test="course != null" >
+        Course,
+      </if>
+      <if test="axlecount != null" >
+        AxleCount,
+      </if>
+      <if test="axletype != null" >
+        AxleType,
+      </if>
+      <if test="weightcount != null" >
+        WeightCount,
+      </if>
+      <if test="weightlimit != null" >
+        WeightLimit,
+      </if>
+      <if test="overloadweightrate != null" >
+        OverLoadWeightRate,
+      </if>
+      <if test="isgreed != null" >
+        IsGreed,
+      </if>
+      <if test="freetype != null" >
+        FreeType,
+      </if>
+      <if test="tokenstationlist != null" >
+        TokenStationList,
+      </if>
+      <if test="isetc != null" >
+        IsETC,
+      </if>
+      <if test="obu != null" >
+        OBU,
+      </if>
+      <if test="paytype != null" >
+        PayType,
+      </if>
+      <if test="tollfare != null" >
+        TollFare,
+      </if>
+      <if test="actualpay != null" >
+        ActualPay,
+      </if>
+      <if test="uploadtime != null" >
+        UploadTime,
+      </if>
+      <if test="sendtime != null" >
+        SendTime,
+      </if>
+      <if test="sendflag != null" >
+        SendFlag,
+      </if>
+      <if test="hoursumid != null" >
+        HourSumID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="entrynetno != null" >
+        #{entrynetno,jdbcType=VARCHAR},
+      </if>
+      <if test="entryplazano != null" >
+        #{entryplazano,jdbcType=VARCHAR},
+      </if>
+      <if test="entrytime != null" >
+        #{entrytime,jdbcType=VARCHAR},
+      </if>
+      <if test="netno != null" >
+        #{netno,jdbcType=VARCHAR},
+      </if>
+      <if test="plazano != null" >
+        #{plazano,jdbcType=VARCHAR},
+      </if>
+      <if test="exittime != null" >
+        #{exittime,jdbcType=VARCHAR},
+      </if>
+      <if test="exitlane != null" >
+        #{exitlane,jdbcType=VARCHAR},
+      </if>
+      <if test="carplate != null" >
+        #{carplate,jdbcType=VARCHAR},
+      </if>
+      <if test="cartype != null" >
+        #{cartype,jdbcType=VARCHAR},
+      </if>
+      <if test="carclass != null" >
+        #{carclass,jdbcType=VARCHAR},
+      </if>
+      <if test="course != null" >
+        #{course,jdbcType=VARCHAR},
+      </if>
+      <if test="axlecount != null" >
+        #{axlecount,jdbcType=INTEGER},
+      </if>
+      <if test="axletype != null" >
+        #{axletype,jdbcType=VARCHAR},
+      </if>
+      <if test="weightcount != null" >
+        #{weightcount,jdbcType=VARCHAR},
+      </if>
+      <if test="weightlimit != null" >
+        #{weightlimit,jdbcType=INTEGER},
+      </if>
+      <if test="overloadweightrate != null" >
+        #{overloadweightrate,jdbcType=VARCHAR},
+      </if>
+      <if test="isgreed != null" >
+        #{isgreed,jdbcType=VARCHAR},
+      </if>
+      <if test="freetype != null" >
+        #{freetype,jdbcType=VARCHAR},
+      </if>
+      <if test="tokenstationlist != null" >
+        #{tokenstationlist,jdbcType=VARCHAR},
+      </if>
+      <if test="isetc != null" >
+        #{isetc,jdbcType=VARCHAR},
+      </if>
+      <if test="obu != null" >
+        #{obu,jdbcType=VARCHAR},
+      </if>
+      <if test="paytype != null" >
+        #{paytype,jdbcType=VARCHAR},
+      </if>
+      <if test="tollfare != null" >
+        #{tollfare,jdbcType=DECIMAL},
+      </if>
+      <if test="actualpay != null" >
+        #{actualpay,jdbcType=DECIMAL},
+      </if>
+      <if test="uploadtime != null" >
+        #{uploadtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sendtime != null" >
+        #{sendtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sendflag != null" >
+        #{sendflag,jdbcType=VARCHAR},
+      </if>
+      <if test="hoursumid != null" >
+        #{hoursumid,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <insert id="insertSelective11" parameterType="com.mydao.datacollection.entity.server.ConsumeWaste" >
+    insert into ConsumeWaste11
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="entrynetno != null" >
+        EntryNetNo,
+      </if>
+      <if test="entryplazano != null" >
+        EntryPlazaNo,
+      </if>
+      <if test="entrytime != null" >
+        EntryTime,
+      </if>
+      <if test="netno != null" >
+        NetNo,
+      </if>
+      <if test="plazano != null" >
+        PlazaNo,
+      </if>
+      <if test="exittime != null" >
+        ExitTime,
+      </if>
+      <if test="exitlane != null" >
+        ExitLane,
+      </if>
+      <if test="carplate != null" >
+        CarPlate,
+      </if>
+      <if test="cartype != null" >
+        CarType,
+      </if>
+      <if test="carclass != null" >
+        CarClass,
+      </if>
+      <if test="course != null" >
+        Course,
+      </if>
+      <if test="axlecount != null" >
+        AxleCount,
+      </if>
+      <if test="axletype != null" >
+        AxleType,
+      </if>
+      <if test="weightcount != null" >
+        WeightCount,
+      </if>
+      <if test="weightlimit != null" >
+        WeightLimit,
+      </if>
+      <if test="overloadweightrate != null" >
+        OverLoadWeightRate,
+      </if>
+      <if test="isgreed != null" >
+        IsGreed,
+      </if>
+      <if test="freetype != null" >
+        FreeType,
+      </if>
+      <if test="tokenstationlist != null" >
+        TokenStationList,
+      </if>
+      <if test="isetc != null" >
+        IsETC,
+      </if>
+      <if test="obu != null" >
+        OBU,
+      </if>
+      <if test="paytype != null" >
+        PayType,
+      </if>
+      <if test="tollfare != null" >
+        TollFare,
+      </if>
+      <if test="actualpay != null" >
+        ActualPay,
+      </if>
+      <if test="uploadtime != null" >
+        UploadTime,
+      </if>
+      <if test="sendtime != null" >
+        SendTime,
+      </if>
+      <if test="sendflag != null" >
+        SendFlag,
+      </if>
+      <if test="hoursumid != null" >
+        HourSumID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="entrynetno != null" >
+        #{entrynetno,jdbcType=VARCHAR},
+      </if>
+      <if test="entryplazano != null" >
+        #{entryplazano,jdbcType=VARCHAR},
+      </if>
+      <if test="entrytime != null" >
+        #{entrytime,jdbcType=VARCHAR},
+      </if>
+      <if test="netno != null" >
+        #{netno,jdbcType=VARCHAR},
+      </if>
+      <if test="plazano != null" >
+        #{plazano,jdbcType=VARCHAR},
+      </if>
+      <if test="exittime != null" >
+        #{exittime,jdbcType=VARCHAR},
+      </if>
+      <if test="exitlane != null" >
+        #{exitlane,jdbcType=VARCHAR},
+      </if>
+      <if test="carplate != null" >
+        #{carplate,jdbcType=VARCHAR},
+      </if>
+      <if test="cartype != null" >
+        #{cartype,jdbcType=VARCHAR},
+      </if>
+      <if test="carclass != null" >
+        #{carclass,jdbcType=VARCHAR},
+      </if>
+      <if test="course != null" >
+        #{course,jdbcType=VARCHAR},
+      </if>
+      <if test="axlecount != null" >
+        #{axlecount,jdbcType=INTEGER},
+      </if>
+      <if test="axletype != null" >
+        #{axletype,jdbcType=VARCHAR},
+      </if>
+      <if test="weightcount != null" >
+        #{weightcount,jdbcType=VARCHAR},
+      </if>
+      <if test="weightlimit != null" >
+        #{weightlimit,jdbcType=INTEGER},
+      </if>
+      <if test="overloadweightrate != null" >
+        #{overloadweightrate,jdbcType=VARCHAR},
+      </if>
+      <if test="isgreed != null" >
+        #{isgreed,jdbcType=VARCHAR},
+      </if>
+      <if test="freetype != null" >
+        #{freetype,jdbcType=VARCHAR},
+      </if>
+      <if test="tokenstationlist != null" >
+        #{tokenstationlist,jdbcType=VARCHAR},
+      </if>
+      <if test="isetc != null" >
+        #{isetc,jdbcType=VARCHAR},
+      </if>
+      <if test="obu != null" >
+        #{obu,jdbcType=VARCHAR},
+      </if>
+      <if test="paytype != null" >
+        #{paytype,jdbcType=VARCHAR},
+      </if>
+      <if test="tollfare != null" >
+        #{tollfare,jdbcType=DECIMAL},
+      </if>
+      <if test="actualpay != null" >
+        #{actualpay,jdbcType=DECIMAL},
+      </if>
+      <if test="uploadtime != null" >
+        #{uploadtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sendtime != null" >
+        #{sendtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sendflag != null" >
+        #{sendflag,jdbcType=VARCHAR},
+      </if>
+      <if test="hoursumid != null" >
+        #{hoursumid,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <insert id="insertSelective12" parameterType="com.mydao.datacollection.entity.server.ConsumeWaste" >
+    insert into ConsumeWaste12
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="entrynetno != null" >
+        EntryNetNo,
+      </if>
+      <if test="entryplazano != null" >
+        EntryPlazaNo,
+      </if>
+      <if test="entrytime != null" >
+        EntryTime,
+      </if>
+      <if test="netno != null" >
+        NetNo,
+      </if>
+      <if test="plazano != null" >
+        PlazaNo,
+      </if>
+      <if test="exittime != null" >
+        ExitTime,
+      </if>
+      <if test="exitlane != null" >
+        ExitLane,
+      </if>
+      <if test="carplate != null" >
+        CarPlate,
+      </if>
+      <if test="cartype != null" >
+        CarType,
+      </if>
+      <if test="carclass != null" >
+        CarClass,
+      </if>
+      <if test="course != null" >
+        Course,
+      </if>
+      <if test="axlecount != null" >
+        AxleCount,
+      </if>
+      <if test="axletype != null" >
+        AxleType,
+      </if>
+      <if test="weightcount != null" >
+        WeightCount,
+      </if>
+      <if test="weightlimit != null" >
+        WeightLimit,
+      </if>
+      <if test="overloadweightrate != null" >
+        OverLoadWeightRate,
+      </if>
+      <if test="isgreed != null" >
+        IsGreed,
+      </if>
+      <if test="freetype != null" >
+        FreeType,
+      </if>
+      <if test="tokenstationlist != null" >
+        TokenStationList,
+      </if>
+      <if test="isetc != null" >
+        IsETC,
+      </if>
+      <if test="obu != null" >
+        OBU,
+      </if>
+      <if test="paytype != null" >
+        PayType,
+      </if>
+      <if test="tollfare != null" >
+        TollFare,
+      </if>
+      <if test="actualpay != null" >
+        ActualPay,
+      </if>
+      <if test="uploadtime != null" >
+        UploadTime,
+      </if>
+      <if test="sendtime != null" >
+        SendTime,
+      </if>
+      <if test="sendflag != null" >
+        SendFlag,
+      </if>
+      <if test="hoursumid != null" >
+        HourSumID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="entrynetno != null" >
+        #{entrynetno,jdbcType=VARCHAR},
+      </if>
+      <if test="entryplazano != null" >
+        #{entryplazano,jdbcType=VARCHAR},
+      </if>
+      <if test="entrytime != null" >
+        #{entrytime,jdbcType=VARCHAR},
+      </if>
+      <if test="netno != null" >
+        #{netno,jdbcType=VARCHAR},
+      </if>
+      <if test="plazano != null" >
+        #{plazano,jdbcType=VARCHAR},
+      </if>
+      <if test="exittime != null" >
+        #{exittime,jdbcType=VARCHAR},
+      </if>
+      <if test="exitlane != null" >
+        #{exitlane,jdbcType=VARCHAR},
+      </if>
+      <if test="carplate != null" >
+        #{carplate,jdbcType=VARCHAR},
+      </if>
+      <if test="cartype != null" >
+        #{cartype,jdbcType=VARCHAR},
+      </if>
+      <if test="carclass != null" >
+        #{carclass,jdbcType=VARCHAR},
+      </if>
+      <if test="course != null" >
+        #{course,jdbcType=VARCHAR},
+      </if>
+      <if test="axlecount != null" >
+        #{axlecount,jdbcType=INTEGER},
+      </if>
+      <if test="axletype != null" >
+        #{axletype,jdbcType=VARCHAR},
+      </if>
+      <if test="weightcount != null" >
+        #{weightcount,jdbcType=VARCHAR},
+      </if>
+      <if test="weightlimit != null" >
+        #{weightlimit,jdbcType=INTEGER},
+      </if>
+      <if test="overloadweightrate != null" >
+        #{overloadweightrate,jdbcType=VARCHAR},
+      </if>
+      <if test="isgreed != null" >
+        #{isgreed,jdbcType=VARCHAR},
+      </if>
+      <if test="freetype != null" >
+        #{freetype,jdbcType=VARCHAR},
+      </if>
+      <if test="tokenstationlist != null" >
+        #{tokenstationlist,jdbcType=VARCHAR},
+      </if>
+      <if test="isetc != null" >
+        #{isetc,jdbcType=VARCHAR},
+      </if>
+      <if test="obu != null" >
+        #{obu,jdbcType=VARCHAR},
+      </if>
+      <if test="paytype != null" >
+        #{paytype,jdbcType=VARCHAR},
+      </if>
+      <if test="tollfare != null" >
+        #{tollfare,jdbcType=DECIMAL},
+      </if>
+      <if test="actualpay != null" >
+        #{actualpay,jdbcType=DECIMAL},
+      </if>
+      <if test="uploadtime != null" >
+        #{uploadtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sendtime != null" >
+        #{sendtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sendflag != null" >
+        #{sendflag,jdbcType=VARCHAR},
+      </if>
+      <if test="hoursumid != null" >
+        #{hoursumid,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mydao.datacollection.entity.server.ConsumeWaste" >
+    update ConsumeWaste01
+    <set >
+      <if test="entrynetno != null" >
+        EntryNetNo = #{entrynetno,jdbcType=VARCHAR},
+      </if>
+      <if test="entryplazano != null" >
+        EntryPlazaNo = #{entryplazano,jdbcType=VARCHAR},
+      </if>
+      <if test="entrytime != null" >
+        EntryTime = #{entrytime,jdbcType=VARCHAR},
+      </if>
+      <if test="netno != null" >
+        NetNo = #{netno,jdbcType=VARCHAR},
+      </if>
+      <if test="plazano != null" >
+        PlazaNo = #{plazano,jdbcType=VARCHAR},
+      </if>
+      <if test="exittime != null" >
+        ExitTime = #{exittime,jdbcType=VARCHAR},
+      </if>
+      <if test="exitlane != null" >
+        ExitLane = #{exitlane,jdbcType=VARCHAR},
+      </if>
+      <if test="carplate != null" >
+        CarPlate = #{carplate,jdbcType=VARCHAR},
+      </if>
+      <if test="cartype != null" >
+        CarType = #{cartype,jdbcType=VARCHAR},
+      </if>
+      <if test="carclass != null" >
+        CarClass = #{carclass,jdbcType=VARCHAR},
+      </if>
+      <if test="course != null" >
+        Course = #{course,jdbcType=VARCHAR},
+      </if>
+      <if test="axlecount != null" >
+        AxleCount = #{axlecount,jdbcType=INTEGER},
+      </if>
+      <if test="axletype != null" >
+        AxleType = #{axletype,jdbcType=VARCHAR},
+      </if>
+      <if test="weightcount != null" >
+        WeightCount = #{weightcount,jdbcType=VARCHAR},
+      </if>
+      <if test="weightlimit != null" >
+        WeightLimit = #{weightlimit,jdbcType=INTEGER},
+      </if>
+      <if test="overloadweightrate != null" >
+        OverLoadWeightRate = #{overloadweightrate,jdbcType=VARCHAR},
+      </if>
+      <if test="isgreed != null" >
+        IsGreed = #{isgreed,jdbcType=VARCHAR},
+      </if>
+      <if test="freetype != null" >
+        FreeType = #{freetype,jdbcType=VARCHAR},
+      </if>
+      <if test="tokenstationlist != null" >
+        TokenStationList = #{tokenstationlist,jdbcType=VARCHAR},
+      </if>
+      <if test="isetc != null" >
+        IsETC = #{isetc,jdbcType=VARCHAR},
+      </if>
+      <if test="obu != null" >
+        OBU = #{obu,jdbcType=VARCHAR},
+      </if>
+      <if test="paytype != null" >
+        PayType = #{paytype,jdbcType=VARCHAR},
+      </if>
+      <if test="tollfare != null" >
+        TollFare = #{tollfare,jdbcType=DECIMAL},
+      </if>
+      <if test="actualpay != null" >
+        ActualPay = #{actualpay,jdbcType=DECIMAL},
+      </if>
+      <if test="uploadtime != null" >
+        UploadTime = #{uploadtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sendtime != null" >
+        SendTime = #{sendtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sendflag != null" >
+        SendFlag = #{sendflag,jdbcType=VARCHAR},
+      </if>
+      <if test="hoursumid != null" >
+        HourSumID = #{hoursumid,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <insert id="insertByBatch01" parameterType="java.util.List">
+    insert into ConsumeWaste01 (entrynetno,entryplazano,entrytime,
+    netno,plazano,exittime,exitlane,carplate,cartype,carclass,course,
+    axlecount,axletype,weightcount,weightlimit,overloadweightrate,
+    isgreed,freetype,tokenstationlist,isetc,obu,paytype,tollfare,
+    actualpay,uploadtime,sendtime,sendflag,hoursumid)
+    values
+    <foreach collection="list" item="item" index="index" separator=",">
+      (#{item.entrynetno}, #{item.entryplazano},#{item.entrytime},
+      #{item.netno},#{item.plazano},#{item.exittime},
+      #{item.exitlane},#{item.carplate},#{item.cartype},
+      #{item.carclass},#{item.course},#{item.axlecount},
+      #{item.axletype},#{item.weightcount},#{item.weightlimit},
+      #{item.overloadweightrate},#{item.isgreed},#{item.freetype},
+      #{item.tokenstationlist},#{item.isetc},#{item.obu},
+      #{item.paytype},#{item.tollfare},#{item.actualpay},
+      #{item.uploadtime},#{item.sendtime},#{item.sendflag},
+      #{item.hoursumid})
+    </foreach>
+  </insert>
+  <insert id="insertByBatch02" parameterType="java.util.List">
+    insert into ConsumeWaste02 (entrynetno,entryplazano,entrytime,
+    netno,plazano,exittime,exitlane,carplate,cartype,carclass,course,
+    axlecount,axletype,weightcount,weightlimit,overloadweightrate,
+    isgreed,freetype,tokenstationlist,isetc,obu,paytype,tollfare,
+    actualpay,uploadtime,sendtime,sendflag,hoursumid)
+    values
+    <foreach collection="list" item="item" index="index" separator=",">
+      (#{item.entrynetno}, #{item.entryplazano},#{item.entrytime},
+      #{item.netno},#{item.plazano},#{item.exittime},
+      #{item.exitlane},#{item.carplate},#{item.cartype},
+      #{item.carclass},#{item.course},#{item.axlecount},
+      #{item.axletype},#{item.weightcount},#{item.weightlimit},
+      #{item.overloadweightrate},#{item.isgreed},#{item.freetype},
+      #{item.tokenstationlist},#{item.isetc},#{item.obu},
+      #{item.paytype},#{item.tollfare},#{item.actualpay},
+      #{item.uploadtime},#{item.sendtime},#{item.sendflag},
+      #{item.hoursumid})
+    </foreach>
+  </insert>
+  <insert id="insertByBatch03" parameterType="java.util.List">
+    insert into ConsumeWaste03 (entrynetno,entryplazano,entrytime,
+    netno,plazano,exittime,exitlane,carplate,cartype,carclass,course,
+    axlecount,axletype,weightcount,weightlimit,overloadweightrate,
+    isgreed,freetype,tokenstationlist,isetc,obu,paytype,tollfare,
+    actualpay,uploadtime,sendtime,sendflag,hoursumid)
+    values
+    <foreach collection="list" item="item" index="index" separator=",">
+      (#{item.entrynetno}, #{item.entryplazano},#{item.entrytime},
+      #{item.netno},#{item.plazano},#{item.exittime},
+      #{item.exitlane},#{item.carplate},#{item.cartype},
+      #{item.carclass},#{item.course},#{item.axlecount},
+      #{item.axletype},#{item.weightcount},#{item.weightlimit},
+      #{item.overloadweightrate},#{item.isgreed},#{item.freetype},
+      #{item.tokenstationlist},#{item.isetc},#{item.obu},
+      #{item.paytype},#{item.tollfare},#{item.actualpay},
+      #{item.uploadtime},#{item.sendtime},#{item.sendflag},
+      #{item.hoursumid})
+    </foreach>
+  </insert>
+  <insert id="insertByBatch04" parameterType="java.util.List">
+    insert into ConsumeWaste04 (entrynetno,entryplazano,entrytime,
+    netno,plazano,exittime,exitlane,carplate,cartype,carclass,course,
+    axlecount,axletype,weightcount,weightlimit,overloadweightrate,
+    isgreed,freetype,tokenstationlist,isetc,obu,paytype,tollfare,
+    actualpay,uploadtime,sendtime,sendflag,hoursumid)
+    values
+    <foreach collection="list" item="item" index="index" separator=",">
+      (#{item.entrynetno}, #{item.entryplazano},#{item.entrytime},
+      #{item.netno},#{item.plazano},#{item.exittime},
+      #{item.exitlane},#{item.carplate},#{item.cartype},
+      #{item.carclass},#{item.course},#{item.axlecount},
+      #{item.axletype},#{item.weightcount},#{item.weightlimit},
+      #{item.overloadweightrate},#{item.isgreed},#{item.freetype},
+      #{item.tokenstationlist},#{item.isetc},#{item.obu},
+      #{item.paytype},#{item.tollfare},#{item.actualpay},
+      #{item.uploadtime},#{item.sendtime},#{item.sendflag},
+      #{item.hoursumid})
+    </foreach>
+  </insert>
+  <insert id="insertByBatch05" parameterType="java.util.List">
+    insert into ConsumeWaste05 (entrynetno,entryplazano,entrytime,
+    netno,plazano,exittime,exitlane,carplate,cartype,carclass,course,
+    axlecount,axletype,weightcount,weightlimit,overloadweightrate,
+    isgreed,freetype,tokenstationlist,isetc,obu,paytype,tollfare,
+    actualpay,uploadtime,sendtime,sendflag,hoursumid)
+    values
+    <foreach collection="list" item="item" index="index" separator=",">
+      (#{item.entrynetno}, #{item.entryplazano},#{item.entrytime},
+      #{item.netno},#{item.plazano},#{item.exittime},
+      #{item.exitlane},#{item.carplate},#{item.cartype},
+      #{item.carclass},#{item.course},#{item.axlecount},
+      #{item.axletype},#{item.weightcount},#{item.weightlimit},
+      #{item.overloadweightrate},#{item.isgreed},#{item.freetype},
+      #{item.tokenstationlist},#{item.isetc},#{item.obu},
+      #{item.paytype},#{item.tollfare},#{item.actualpay},
+      #{item.uploadtime},#{item.sendtime},#{item.sendflag},
+      #{item.hoursumid})
+    </foreach>
+  </insert>
+  <insert id="insertByBatch06" parameterType="java.util.List">
+    insert into ConsumeWaste06 (entrynetno,entryplazano,entrytime,
+    netno,plazano,exittime,exitlane,carplate,cartype,carclass,course,
+    axlecount,axletype,weightcount,weightlimit,overloadweightrate,
+    isgreed,freetype,tokenstationlist,isetc,obu,paytype,tollfare,
+    actualpay,uploadtime,sendtime,sendflag,hoursumid)
+    values
+    <foreach collection="list" item="item" index="index" separator=",">
+      (#{item.entrynetno}, #{item.entryplazano},#{item.entrytime},
+      #{item.netno},#{item.plazano},#{item.exittime},
+      #{item.exitlane},#{item.carplate},#{item.cartype},
+      #{item.carclass},#{item.course},#{item.axlecount},
+      #{item.axletype},#{item.weightcount},#{item.weightlimit},
+      #{item.overloadweightrate},#{item.isgreed},#{item.freetype},
+      #{item.tokenstationlist},#{item.isetc},#{item.obu},
+      #{item.paytype},#{item.tollfare},#{item.actualpay},
+      #{item.uploadtime},#{item.sendtime},#{item.sendflag},
+      #{item.hoursumid})
+    </foreach>
+  </insert>
+  <insert id="insertByBatch07" parameterType="java.util.List">
+    insert into ConsumeWaste07 (entrynetno,entryplazano,entrytime,
+    netno,plazano,exittime,exitlane,carplate,cartype,carclass,course,
+    axlecount,axletype,weightcount,weightlimit,overloadweightrate,
+    isgreed,freetype,tokenstationlist,isetc,obu,paytype,tollfare,
+    actualpay,uploadtime,sendtime,sendflag,hoursumid)
+    values
+    <foreach collection="list" item="item" index="index" separator=",">
+      (#{item.entrynetno}, #{item.entryplazano},#{item.entrytime},
+      #{item.netno},#{item.plazano},#{item.exittime},
+      #{item.exitlane},#{item.carplate},#{item.cartype},
+      #{item.carclass},#{item.course},#{item.axlecount},
+      #{item.axletype},#{item.weightcount},#{item.weightlimit},
+      #{item.overloadweightrate},#{item.isgreed},#{item.freetype},
+      #{item.tokenstationlist},#{item.isetc},#{item.obu},
+      #{item.paytype},#{item.tollfare},#{item.actualpay},
+      #{item.uploadtime},#{item.sendtime},#{item.sendflag},
+      #{item.hoursumid})
+    </foreach>
+  </insert>
+  <insert id="insertByBatch08" parameterType="java.util.List">
+    insert into ConsumeWaste08 (entrynetno,entryplazano,entrytime,
+    netno,plazano,exittime,exitlane,carplate,cartype,carclass,course,
+    axlecount,axletype,weightcount,weightlimit,overloadweightrate,
+    isgreed,freetype,tokenstationlist,isetc,obu,paytype,tollfare,
+    actualpay,uploadtime,sendtime,sendflag,hoursumid)
+    values
+    <foreach collection="list" item="item" index="index" separator=",">
+      (#{item.entrynetno}, #{item.entryplazano},#{item.entrytime},
+      #{item.netno},#{item.plazano},#{item.exittime},
+      #{item.exitlane},#{item.carplate},#{item.cartype},
+      #{item.carclass},#{item.course},#{item.axlecount},
+      #{item.axletype},#{item.weightcount},#{item.weightlimit},
+      #{item.overloadweightrate},#{item.isgreed},#{item.freetype},
+      #{item.tokenstationlist},#{item.isetc},#{item.obu},
+      #{item.paytype},#{item.tollfare},#{item.actualpay},
+      #{item.uploadtime},#{item.sendtime},#{item.sendflag},
+      #{item.hoursumid})
+    </foreach>
+  </insert>
+  <insert id="insertByBatch09" parameterType="java.util.List">
+    insert into ConsumeWaste09 (entrynetno,entryplazano,entrytime,
+    netno,plazano,exittime,exitlane,carplate,cartype,carclass,course,
+    axlecount,axletype,weightcount,weightlimit,overloadweightrate,
+    isgreed,freetype,tokenstationlist,isetc,obu,paytype,tollfare,
+    actualpay,uploadtime,sendtime,sendflag,hoursumid)
+    values
+    <foreach collection="list" item="item" index="index" separator=",">
+      (#{item.entrynetno}, #{item.entryplazano},#{item.entrytime},
+      #{item.netno},#{item.plazano},#{item.exittime},
+      #{item.exitlane},#{item.carplate},#{item.cartype},
+      #{item.carclass},#{item.course},#{item.axlecount},
+      #{item.axletype},#{item.weightcount},#{item.weightlimit},
+      #{item.overloadweightrate},#{item.isgreed},#{item.freetype},
+      #{item.tokenstationlist},#{item.isetc},#{item.obu},
+      #{item.paytype},#{item.tollfare},#{item.actualpay},
+      #{item.uploadtime},#{item.sendtime},#{item.sendflag},
+      #{item.hoursumid})
+    </foreach>
+  </insert>
+  <insert id="insertByBatch10" parameterType="java.util.List">
+    insert into ConsumeWaste10 (entrynetno,entryplazano,entrytime,
+    netno,plazano,exittime,exitlane,carplate,cartype,carclass,course,
+    axlecount,axletype,weightcount,weightlimit,overloadweightrate,
+    isgreed,freetype,tokenstationlist,isetc,obu,paytype,tollfare,
+    actualpay,uploadtime,sendtime,sendflag,hoursumid)
+    values
+    <foreach collection="list" item="item" index="index" separator=",">
+      (#{item.entrynetno}, #{item.entryplazano},#{item.entrytime},
+      #{item.netno},#{item.plazano},#{item.exittime},
+      #{item.exitlane},#{item.carplate},#{item.cartype},
+      #{item.carclass},#{item.course},#{item.axlecount},
+      #{item.axletype},#{item.weightcount},#{item.weightlimit},
+      #{item.overloadweightrate},#{item.isgreed},#{item.freetype},
+      #{item.tokenstationlist},#{item.isetc},#{item.obu},
+      #{item.paytype},#{item.tollfare},#{item.actualpay},
+      #{item.uploadtime},#{item.sendtime},#{item.sendflag},
+      #{item.hoursumid})
+    </foreach>
+  </insert>
+  <insert id="insertByBatch11" parameterType="java.util.List">
+    insert into ConsumeWaste11 (entrynetno,entryplazano,entrytime,
+    netno,plazano,exittime,exitlane,carplate,cartype,carclass,course,
+    axlecount,axletype,weightcount,weightlimit,overloadweightrate,
+    isgreed,freetype,tokenstationlist,isetc,obu,paytype,tollfare,
+    actualpay,uploadtime,sendtime,sendflag,hoursumid)
+    values
+    <foreach collection="list" item="item" index="index" separator=",">
+      (#{item.entrynetno}, #{item.entryplazano},#{item.entrytime},
+      #{item.netno},#{item.plazano},#{item.exittime},
+      #{item.exitlane},#{item.carplate},#{item.cartype},
+      #{item.carclass},#{item.course},#{item.axlecount},
+      #{item.axletype},#{item.weightcount},#{item.weightlimit},
+      #{item.overloadweightrate},#{item.isgreed},#{item.freetype},
+      #{item.tokenstationlist},#{item.isetc},#{item.obu},
+      #{item.paytype},#{item.tollfare},#{item.actualpay},
+      #{item.uploadtime},#{item.sendtime},#{item.sendflag},
+      #{item.hoursumid})
+    </foreach>
+  </insert>
+  <insert id="insertByBatch12" parameterType="java.util.List">
+    insert into ConsumeWaste12 (entrynetno,entryplazano,entrytime,
+    netno,plazano,exittime,exitlane,carplate,cartype,carclass,course,
+    axlecount,axletype,weightcount,weightlimit,overloadweightrate,
+    isgreed,freetype,tokenstationlist,isetc,obu,paytype,tollfare,
+    actualpay,uploadtime,sendtime,sendflag,hoursumid)
+    values
+    <foreach collection="list" item="item" index="index" separator=",">
+      (#{item.entrynetno}, #{item.entryplazano},#{item.entrytime},
+      #{item.netno},#{item.plazano},#{item.exittime},
+      #{item.exitlane},#{item.carplate},#{item.cartype},
+      #{item.carclass},#{item.course},#{item.axlecount},
+      #{item.axletype},#{item.weightcount},#{item.weightlimit},
+      #{item.overloadweightrate},#{item.isgreed},#{item.freetype},
+      #{item.tokenstationlist},#{item.isetc},#{item.obu},
+      #{item.paytype},#{item.tollfare},#{item.actualpay},
+      #{item.uploadtime},#{item.sendtime},#{item.sendflag},
+      #{item.hoursumid})
+    </foreach>
+  </insert>
+</mapper>

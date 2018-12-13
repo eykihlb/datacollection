@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mydao.datacollection.dao.station.ConstLaneMapper" >
+  <resultMap id="BaseResultMap" type="com.mydao.datacollection.entity.station.ConstLane" >
+    <id column="SITENO" property="siteno" jdbcType="CHAR" />
+    <id column="NETNO" property="netno" jdbcType="CHAR" />
+    <id column="LANENO" property="laneno" jdbcType="CHAR" />
+    <result column="LANETYPE" property="lanetype" jdbcType="CHAR" />
+    <result column="CFLAG" property="cflag" jdbcType="CHAR" />
+    <result column="IPADDRESS" property="ipaddress" jdbcType="CHAR" />
+    <result column="LANEFX" property="lanefx" jdbcType="DECIMAL" />
+    <result column="LANEFX_DESC" property="lanefxDesc" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    SITENO, NETNO, LANENO, LANETYPE, CFLAG, IPADDRESS, LANEFX, LANEFX_DESC
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.mydao.datacollection.entity.station.ConstLaneKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from CONST_LANE
+    where SITENO = #{siteno,jdbcType=CHAR}
+      and NETNO = #{netno,jdbcType=CHAR}
+      and LANENO = #{laneno,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.mydao.datacollection.entity.station.ConstLaneKey" >
+    delete from CONST_LANE
+    where SITENO = #{siteno,jdbcType=CHAR}
+      and NETNO = #{netno,jdbcType=CHAR}
+      and LANENO = #{laneno,jdbcType=CHAR}
+  </delete>
+  <insert id="insertSelective" parameterType="com.mydao.datacollection.entity.station.ConstLane" >
+    insert into CONST_LANE
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="siteno != null" >
+        SITENO,
+      </if>
+      <if test="netno != null" >
+        NETNO,
+      </if>
+      <if test="laneno != null" >
+        LANENO,
+      </if>
+      <if test="lanetype != null" >
+        LANETYPE,
+      </if>
+      <if test="cflag != null" >
+        CFLAG,
+      </if>
+      <if test="ipaddress != null" >
+        IPADDRESS,
+      </if>
+      <if test="lanefx != null" >
+        LANEFX,
+      </if>
+      <if test="lanefxDesc != null" >
+        LANEFX_DESC,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="siteno != null" >
+        #{siteno,jdbcType=CHAR},
+      </if>
+      <if test="netno != null" >
+        #{netno,jdbcType=CHAR},
+      </if>
+      <if test="laneno != null" >
+        #{laneno,jdbcType=CHAR},
+      </if>
+      <if test="lanetype != null" >
+        #{lanetype,jdbcType=CHAR},
+      </if>
+      <if test="cflag != null" >
+        #{cflag,jdbcType=CHAR},
+      </if>
+      <if test="ipaddress != null" >
+        #{ipaddress,jdbcType=CHAR},
+      </if>
+      <if test="lanefx != null" >
+        #{lanefx,jdbcType=DECIMAL},
+      </if>
+      <if test="lanefxDesc != null" >
+        #{lanefxDesc,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mydao.datacollection.entity.station.ConstLane" >
+    update CONST_LANE
+    <set >
+      <if test="lanetype != null" >
+        LANETYPE = #{lanetype,jdbcType=CHAR},
+      </if>
+      <if test="cflag != null" >
+        CFLAG = #{cflag,jdbcType=CHAR},
+      </if>
+      <if test="ipaddress != null" >
+        IPADDRESS = #{ipaddress,jdbcType=CHAR},
+      </if>
+      <if test="lanefx != null" >
+        LANEFX = #{lanefx,jdbcType=DECIMAL},
+      </if>
+      <if test="lanefxDesc != null" >
+        LANEFX_DESC = #{lanefxDesc,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where SITENO = #{siteno,jdbcType=CHAR}
+      and NETNO = #{netno,jdbcType=CHAR}
+      and LANENO = #{laneno,jdbcType=CHAR}
+  </update>
+
+  <select id="selectExitLaneNo" resultMap="BaseResultMap">
+    select LANENO from CONST_LANE where LANETYPE = '1'
+  </select>
+</mapper>

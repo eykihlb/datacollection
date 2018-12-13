@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mydao.datacollection.dao.station.DataTransactionMapper" >
+  <resultMap id="BaseResultMap" type="com.mydao.datacollection.entity.station.DataTransaction" >
+    <result column="NETNO" property="netno" jdbcType="CHAR" />
+    <result column="SITENO" property="siteno" jdbcType="CHAR" />
+    <result column="LANENO" property="laneno" jdbcType="CHAR" />
+    <result column="LANETYPE" property="lanetype" jdbcType="CHAR" />
+    <result column="LANEMODE" property="lanemode" jdbcType="CHAR" />
+    <result column="CETC" property="cetc" jdbcType="CHAR" />
+    <result column="JOBNO" property="jobno" jdbcType="CHAR" />
+    <result column="JOBBEGIN" property="jobbegin" jdbcType="TIMESTAMP" />
+    <result column="SQUADNO" property="squadno" jdbcType="CHAR" />
+    <result column="STAFFNO" property="staffno" jdbcType="CHAR" />
+    <result column="STAFFNAME" property="staffname" jdbcType="CHAR" />
+    <result column="TRANSACTIONDATE" property="transactiondate" jdbcType="TIMESTAMP" />
+    <result column="TRANSACTIONNO" property="transactionno" jdbcType="CHAR" />
+    <result column="INDXNO" property="indxno" jdbcType="CHAR" />
+    <result column="OBSTCSC" property="obstcsc" jdbcType="CHAR" />
+    <result column="OBSMOP" property="obsmop" jdbcType="CHAR" />
+    <result column="OBSSEQUENCE" property="obssequence" jdbcType="CHAR" />
+    <result column="OBSPASSAGE" property="obspassage" jdbcType="CHAR" />
+    <result column="CLASSNO" property="classno" jdbcType="CHAR" />
+    <result column="FARENETNO" property="farenetno" jdbcType="CHAR" />
+    <result column="FARESITENO" property="faresiteno" jdbcType="CHAR" />
+    <result column="ENTRYNETNO" property="entrynetno" jdbcType="CHAR" />
+    <result column="ENTRYSITENO" property="entrysiteno" jdbcType="CHAR" />
+    <result column="ENTRYLANETYPE" property="entrylanetype" jdbcType="CHAR" />
+    <result column="ENTRYLANENO" property="entrylaneno" jdbcType="CHAR" />
+    <result column="ENTRYSTAFFNO" property="entrystaffno" jdbcType="CHAR" />
+    <result column="ENTRYCLASSNO" property="entryclassno" jdbcType="CHAR" />
+    <result column="ENTRYVEHICLEPLATE" property="entryvehicleplate" jdbcType="CHAR" />
+    <result column="ENTRYDATE" property="entrydate" jdbcType="TIMESTAMP" />
+    <result column="ENTRYJOBNO" property="entryjobno" jdbcType="CHAR" />
+    <result column="ENTRYMOPNO" property="entrymopno" jdbcType="CHAR" />
+    <result column="MOPNO" property="mopno" jdbcType="CHAR" />
+    <result column="TICKETNO" property="ticketno" jdbcType="CHAR" />
+    <result column="FARETBLVERSION" property="faretblversion" jdbcType="CHAR" />
+    <result column="PRIXTOTAL" property="prixtotal" jdbcType="DECIMAL" />
+    <result column="PRIXPARTIAL" property="prixpartial" jdbcType="DECIMAL" />
+    <result column="MOPDETAIL" property="mopdetail" jdbcType="CHAR" />
+    <result column="CODEOCTAL" property="codeoctal" jdbcType="CHAR" />
+    <result column="TCSCNO" property="tcscno" jdbcType="CHAR" />
+    <result column="TCSCVERSION" property="tcscversion" jdbcType="CHAR" />
+    <result column="CARTRIDGENO" property="cartridgeno" jdbcType="CHAR" />
+    <result column="TCSCORDERNO" property="tcscorderno" jdbcType="CHAR" />
+    <result column="CARTRIDGECYCLENO" property="cartridgecycleno" jdbcType="CHAR" />
+    <result column="PAYCSCNO" property="paycscno" jdbcType="CHAR" />
+    <result column="EXITVEHICLEPLATE" property="exitvehicleplate" jdbcType="CHAR" />
+    <result column="PARVEHICLEPLATE" property="parvehicleplate" jdbcType="VARCHAR" />
+    <result column="PROCESSTYPE" property="processtype" jdbcType="CHAR" />
+    <result column="COVERWEIGHT" property="coverweight" jdbcType="CHAR" />
+    <result column="INVOICETYPE" property="invoicetype" jdbcType="CHAR" />
+    <result column="EQUIPSTATUS" property="equipstatus" jdbcType="CHAR" />
+    <result column="CFLAG" property="cflag" jdbcType="CHAR" />
+    <result column="FARECLASSNO" property="fareclassno" jdbcType="CHAR" />
+    <result column="SHIFTNO" property="shiftno" jdbcType="CHAR" />
+    <result column="IMAGEFILE" property="imagefile" jdbcType="CHAR" />
+    <result column="ROUTENO" property="routeno" jdbcType="CHAR" />
+    <result column="FAREAXLES" property="fareaxles" jdbcType="DECIMAL" />
+    <result column="DETECTWEIGHT" property="detectweight" jdbcType="DECIMAL" />
+    <result column="OVERWEIGHT" property="overweight" jdbcType="DECIMAL" />
+    <result column="OVERWEIGHTTYPE" property="overweighttype" jdbcType="CHAR" />
+    <result column="ENTRYAXLES" property="entryaxles" jdbcType="VARCHAR" />
+    <result column="ENTRYWEIGHT" property="entryweight" jdbcType="DECIMAL" />
+    <result column="ENTRYOVERWEIGHT" property="entryoverweight" jdbcType="DECIMAL" />
+    <result column="ENTRYOVERWEIGHTTYPE" property="entryoverweighttype" jdbcType="CHAR" />
+    <result column="ENTRYPARVEHICLEPLATE" property="entryparvehicleplate" jdbcType="VARCHAR" />
+    <result column="PICTURECOMMENT" property="picturecomment" jdbcType="VARCHAR" />
+    <result column="PICTURECOMMENT2" property="picturecomment2" jdbcType="VARCHAR" />
+    <result column="WEIGHTMODE" property="weightmode" jdbcType="CHAR" />
+    <result column="PARVEHICLEPLATECOLOR" property="parvehicleplatecolor" jdbcType="CHAR" />
+    <result column="DISTANCE" property="distance" jdbcType="DECIMAL" />
+    <result column="COMPUTERATE" property="computerate" jdbcType="DECIMAL" />
+    <result column="FAREWEIGHT" property="fareweight" jdbcType="DECIMAL" />
+    <result column="OVERWEIGHTFARE" property="overweightfare" jdbcType="DECIMAL" />
+    <result column="AXLEGROUPS" property="axlegroups" jdbcType="DECIMAL" />
+    <result column="AXLEGROUP1TYPE" property="axlegroup1type" jdbcType="CHAR" />
+    <result column="AXLEGROUP1WEIGHT" property="axlegroup1weight" jdbcType="DECIMAL" />
+    <result column="AXLEGROUP2TYPE" property="axlegroup2type" jdbcType="CHAR" />
+    <result column="AXLEGROUP2WEIGHT" property="axlegroup2weight" jdbcType="DECIMAL" />
+    <result column="AXLEGROUP3TYPE" property="axlegroup3type" jdbcType="CHAR" />
+    <result column="AXLEGROUP3WEIGHT" property="axlegroup3weight" jdbcType="DECIMAL" />
+    <result column="AXLEGROUP4TYPE" property="axlegroup4type" jdbcType="CHAR" />
+    <result column="AXLEGROUP4WEIGHT" property="axlegroup4weight" jdbcType="DECIMAL" />
+    <result column="AXLEGROUP5TYPE" property="axlegroup5type" jdbcType="CHAR" />
+    <result column="AXLEGROUP5WEIGHT" property="axlegroup5weight" jdbcType="DECIMAL" />
+    <result column="AXLEGROUP6TYPE" property="axlegroup6type" jdbcType="CHAR" />
+    <result column="AXLEGROUP6WEIGHT" property="axlegroup6weight" jdbcType="DECIMAL" />
+    <result column="AXLEGROUP7TYPE" property="axlegroup7type" jdbcType="CHAR" />
+    <result column="AXLEGROUP7WEIGHT" property="axlegroup7weight" jdbcType="DECIMAL" />
+    <result column="AXLEGROUP8TYPE" property="axlegroup8type" jdbcType="CHAR" />
+    <result column="AXLEGROUP8WEIGHT" property="axlegroup8weight" jdbcType="DECIMAL" />
+    <result column="AXLEGROUP9TYPE" property="axlegroup9type" jdbcType="CHAR" />
+    <result column="AXLEGROUP9WEIGHT" property="axlegroup9weight" jdbcType="DECIMAL" />
+    <result column="SPEED" property="speed" jdbcType="DECIMAL" />
+    <result column="ACCELERATION" property="acceleration" jdbcType="DECIMAL" />
+    <result column="FAREAXLEGROUP1TYPE" property="fareaxlegroup1type" jdbcType="CHAR" />
+    <result column="FAREAXLEGROUP2TYPE" property="fareaxlegroup2type" jdbcType="CHAR" />
+    <result column="FAREAXLEGROUP3TYPE" property="fareaxlegroup3type" jdbcType="CHAR" />
+    <result column="FAREAXLEGROUP4TYPE" property="fareaxlegroup4type" jdbcType="CHAR" />
+    <result column="FAREAXLEGROUP5TYPE" property="fareaxlegroup5type" jdbcType="CHAR" />
+    <result column="FAREAXLEGROUP6TYPE" property="fareaxlegroup6type" jdbcType="CHAR" />
+    <result column="FAREAXLEGROUP7TYPE" property="fareaxlegroup7type" jdbcType="CHAR" />
+    <result column="FAREAXLEGROUP8TYPE" property="fareaxlegroup8type" jdbcType="CHAR" />
+    <result column="FAREAXLEGROUP9TYPE" property="fareaxlegroup9type" jdbcType="CHAR" />
+    <result column="WEIGHTDDHM" property="weightddhm" jdbcType="TIMESTAMP" />
+    <result column="ENTRYAXLEGROUPS" property="entryaxlegroups" jdbcType="DECIMAL" />
+    <result column="ENTRYAXLEGROUP1TYPE" property="entryaxlegroup1type" jdbcType="CHAR" />
+    <result column="ENTRYAXLEGROUP2TYPE" property="entryaxlegroup2type" jdbcType="CHAR" />
+    <result column="ENTRYAXLEGROUP3TYPE" property="entryaxlegroup3type" jdbcType="CHAR" />
+    <result column="ENTRYAXLEGROUP4TYPE" property="entryaxlegroup4type" jdbcType="CHAR" />
+    <result column="ENTRYAXLEGROUP5TYPE" property="entryaxlegroup5type" jdbcType="CHAR" />
+    <result column="ENTRYAXLEGROUP6TYPE" property="entryaxlegroup6type" jdbcType="CHAR" />
+    <result column="ENTRYAXLEGROUP7TYPE" property="entryaxlegroup7type" jdbcType="CHAR" />
+    <result column="ENTRYAXLEGROUP8TYPE" property="entryaxlegroup8type" jdbcType="CHAR" />
+    <result column="ENTRYAXLEGROUP9TYPE" property="entryaxlegroup9type" jdbcType="CHAR" />
+    <result column="PICTURECOMMENTTYPE" property="picturecommenttype" jdbcType="CHAR" />
+    <result column="DETECTAXLES" property="detectaxles" jdbcType="DECIMAL" />
+    <result column="ISOVERLOAD" property="isoverload" jdbcType="CHAR" />
+    <result column="ISSPECIALTRUNK" property="isspecialtrunk" jdbcType="CHAR" />
+    <result column="LIMITWEIGHT" property="limitweight" jdbcType="DECIMAL" />
+    <result column="FAREAXLEGROUP1WEIGHT" property="fareaxlegroup1weight" jdbcType="DECIMAL" />
+    <result column="FAREAXLEGROUP2WEIGHT" property="fareaxlegroup2weight" jdbcType="DECIMAL" />
+    <result column="FAREAXLEGROUP3WEIGHT" property="fareaxlegroup3weight" jdbcType="DECIMAL" />
+    <result column="FAREAXLEGROUP4WEIGHT" property="fareaxlegroup4weight" jdbcType="DECIMAL" />
+    <result column="FAREAXLEGROUP5WEIGHT" property="fareaxlegroup5weight" jdbcType="DECIMAL" />
+    <result column="FAREAXLEGROUP6WEIGHT" property="fareaxlegroup6weight" jdbcType="DECIMAL" />
+    <result column="FAREAXLEGROUP7WEIGHT" property="fareaxlegroup7weight" jdbcType="DECIMAL" />
+    <result column="FAREAXLEGROUP8WEIGHT" property="fareaxlegroup8weight" jdbcType="DECIMAL" />
+    <result column="FAREAXLEGROUP9WEIGHT" property="fareaxlegroup9weight" jdbcType="DECIMAL" />
+    <result column="ENTRYAXLEGROUP1WEIGHT" property="entryaxlegroup1weight" jdbcType="DECIMAL" />
+    <result column="ENTRYAXLEGROUP2WEIGHT" property="entryaxlegroup2weight" jdbcType="DECIMAL" />
+    <result column="ENTRYAXLEGROUP3WEIGHT" property="entryaxlegroup3weight" jdbcType="DECIMAL" />
+    <result column="ENTRYAXLEGROUP4WEIGHT" property="entryaxlegroup4weight" jdbcType="DECIMAL" />
+    <result column="ENTRYAXLEGROUP5WEIGHT" property="entryaxlegroup5weight" jdbcType="DECIMAL" />
+    <result column="ENTRYAXLEGROUP6WEIGHT" property="entryaxlegroup6weight" jdbcType="DECIMAL" />
+    <result column="ENTRYAXLEGROUP7WEIGHT" property="entryaxlegroup7weight" jdbcType="DECIMAL" />
+    <result column="ENTRYAXLEGROUP8WEIGHT" property="entryaxlegroup8weight" jdbcType="DECIMAL" />
+    <result column="ENTRYAXLEGROUP9WEIGHT" property="entryaxlegroup9weight" jdbcType="DECIMAL" />
+    <result column="FAREAXLEGROUPS" property="fareaxlegroups" jdbcType="DECIMAL" />
+    <result column="DISCOUNTFARE" property="discountfare" jdbcType="DECIMAL" />
+    <result column="CPUCARDNETWORK" property="cpucardnetwork" jdbcType="CHAR" />
+    <result column="CPUCARDNO" property="cpucardno" jdbcType="CHAR" />
+    <result column="CPUCARDTYPE" property="cpucardtype" jdbcType="CHAR" />
+    <result column="FLAGSTANUM" property="flagstanum" jdbcType="DECIMAL" />
+    <result column="FLAGSTA" property="flagsta" jdbcType="VARCHAR" />
+    <result column="BY_FIELD1" property="byField1" jdbcType="DECIMAL" />
+    <result column="QRTRANSID" property="qrtransid" jdbcType="VARCHAR" />
+    <result column="QRPAYFARE" property="qrpayfare" jdbcType="VARCHAR" />
+    <result column="QRPAYTYPE" property="qrpaytype" jdbcType="VARCHAR" />
+    <result column="CFLAG1" property="cflag1" jdbcType="CHAR" />
+    <result column="CFLAG2" property="cflag2" jdbcType="CHAR" />
+    <result column="axletypeandweight" property="axletypeandweight" jdbcType="VARCHAR" />
+    <result column="uploadflag" property="uploadflag" jdbcType="VARCHAR" />
+    <result column="missdate" property="missdate" jdbcType="VARCHAR" />
+  </resultMap>
+  <select id="selectByHours" parameterType="java.util.Map" resultMap="BaseResultMap">
+    select
+      t.*
+    from
+      Data_transaction t,Data_weight d
+    where
+      t.TRANSACTIONDATE &gt;= to_date(#{beginHours},'yyyy-MM-dd HH24:Mi:ss') and
+      t.TRANSACTIONDATE &lt;= to_date(#{endHours},'yyyy-MM-dd HH24:Mi:ss') AND
+      t.LANENO = #{laneNo} and
+      t.LANETYPE = 1 and
+      t.LANENO = d.laneno(+) and
+      t.netno = d.netno(+) and
+      t.siteno = d.siteno(+) and
+      t.transactiondate = d.transactiondate(+) and
+      t.MOPNO not in (00,07,48,38,39,37,51) and
+      t.uploadFlag = 0
+  </select>
+  <select id="selectByDays" parameterType="java.util.Map" resultMap="BaseResultMap">
+    select
+      t.*,d.axletypeandweight
+    from
+      Data_transaction t,Data_weight d
+    where
+      t.TRANSACTIONDATE &gt;= to_date(#{beginDays},'yyyy-MM-dd HH24:Mi:ss') and
+      t.TRANSACTIONDATE &lt;= to_date(#{endDays},'yyyy-MM-dd HH24:Mi:ss') and
+      t.LANETYPE = 1 and
+      t.LANENO = d.laneno(+) and
+      t.netno = d.netno(+) and
+      t.siteno = d.siteno(+) and
+      t.transactiondate = d.transactiondate(+) and
+      t.MOPNO not in (00,07,48,38,39,37,51) and
+      t.uploadFlag = 0
+  </select>
+  <select id="selectMissDate" parameterType="java.util.Map" resultMap="BaseResultMap">
+    select
+      to_char(t.TRANSACTIONDATE,'yyyy-MM-dd') missdate
+    from
+      Data_transaction t,Data_weight d
+    where
+      t.LANETYPE = 1 and
+      t.netno = d.netno(+) and
+      t.siteno = d.siteno(+) and
+      t.LANENO = d.laneno(+) and
+      t.transactiondate = d.transactiondate(+)  and
+      t.uploadFlag = 0 and
+      t.MOPNO not in (00,07,48,38,39,37,51)
+    group by
+      to_char(t.TRANSACTIONDATE,'yyyy-MM-dd')
+  </select>
+  <update id="updateRecord" parameterType="com.mydao.datacollection.entity.station.DataTransaction">
+    update Data_transaction set uploadflag = 1 where netno = #{netno} and siteno = #{siteno} and laneno = #{laneno} and TRANSACTIONDATE = #{transactiondate}
+  </update>
+
+  <update id="updateBatch" parameterType="java.util.List">
+    <foreach collection="list" item="item" index="index" separator=";">
+      update Data_transaction set uploadflag = 1 where netno = #{item.netno} and siteno = #{item.siteno} and laneno = #{item.laneno} and to_char(TRANSACTIONDATE,'yyyy-MM-dd HH24:Mi:ss') = to_char(#{item.transactiondate},'yyyy-MM-dd HH24:Mi:ss') and uploadflag = 0
+    </foreach>
+  </update>
+</mapper>

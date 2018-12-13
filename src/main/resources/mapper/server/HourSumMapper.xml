@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mydao.datacollection.dao.server.HourSumMapper" >
+  <resultMap id="BaseResultMap" type="com.mydao.datacollection.entity.server.HourSum" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="NetNo" property="netno" jdbcType="VARCHAR" />
+    <result column="PlazaNo" property="plazano" jdbcType="VARCHAR" />
+    <result column="SumHour" property="sumhour" jdbcType="VARCHAR" />
+    <result column="ExitLane" property="exitlane" jdbcType="VARCHAR" />
+    <result column="TotalTraffic" property="totaltraffic" jdbcType="INTEGER" />
+    <result column="CheckFlag" property="checkflag" jdbcType="VARCHAR" />
+    <result column="UploadTime" property="uploadtime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, NetNo, PlazaNo, SumHour, ExitLane, TotalTraffic, CheckFlag, UploadTime
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from HourSum
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from HourSum
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insertSelective" parameterType="com.mydao.datacollection.entity.server.HourSum" >
+    insert into HourSum
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="netno != null" >
+        NetNo,
+      </if>
+      <if test="plazano != null" >
+        PlazaNo,
+      </if>
+      <if test="sumhour != null" >
+        SumHour,
+      </if>
+      <if test="exitlane != null" >
+        ExitLane,
+      </if>
+      <if test="totaltraffic != null" >
+        TotalTraffic,
+      </if>
+      <if test="checkflag != null" >
+        CheckFlag,
+      </if>
+      <if test="uploadtime != null" >
+        UploadTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="netno != null" >
+        #{netno,jdbcType=VARCHAR},
+      </if>
+      <if test="plazano != null" >
+        #{plazano,jdbcType=VARCHAR},
+      </if>
+      <if test="sumhour != null" >
+        #{sumhour,jdbcType=VARCHAR},
+      </if>
+      <if test="exitlane != null" >
+        #{exitlane,jdbcType=VARCHAR},
+      </if>
+      <if test="totaltraffic != null" >
+        #{totaltraffic,jdbcType=INTEGER},
+      </if>
+      <if test="checkflag != null" >
+        #{checkflag,jdbcType=VARCHAR},
+      </if>
+      <if test="uploadtime != null" >
+        #{uploadtime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mydao.datacollection.entity.server.HourSum" >
+    update HourSum
+    <set >
+      <if test="netno != null" >
+        NetNo = #{netno,jdbcType=VARCHAR},
+      </if>
+      <if test="plazano != null" >
+        PlazaNo = #{plazano,jdbcType=VARCHAR},
+      </if>
+      <if test="sumhour != null" >
+        SumHour = #{sumhour,jdbcType=VARCHAR},
+      </if>
+      <if test="exitlane != null" >
+        ExitLane = #{exitlane,jdbcType=VARCHAR},
+      </if>
+      <if test="totaltraffic != null" >
+        TotalTraffic = #{totaltraffic,jdbcType=INTEGER},
+      </if>
+      <if test="checkflag != null" >
+        CheckFlag = #{checkflag,jdbcType=VARCHAR},
+      </if>
+      <if test="uploadtime != null" >
+        UploadTime = #{uploadtime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByHours" parameterType="com.mydao.datacollection.entity.server.HourSum">
+    update HourSum set TotalTraffic = TotalTraffic + #{totaltraffic} where SumHour = #{sumhour} and ExitLane = #{exitlane} and
+    NetNo = #{netno} and PlazaNo = #{plazano}
+  </update>
+  
+  <insert id="insertBatch" parameterType="java.util.List">
+    insert into HourSum (ID,NetNo,PlazaNo,SumHour,ExitLane,TotalTraffic,CheckFlag,UploadTime) values
+    <foreach collection="list" item="item" index="index" separator=",">
+      (#{item.id},#{item.netno},#{item.plazano},#{item.sumhour},#{item.exitlane},#{item.totaltraffic},#{item.checkflag},#{item.uploadtime})
+    </foreach>
+  </insert>
+</mapper>

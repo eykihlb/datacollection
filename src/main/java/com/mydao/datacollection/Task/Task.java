@@ -263,4 +263,9 @@ public class Task {
         return result.substring(0,result.length()-1);
     }
 
+    @Scheduled(cron = "0/1 * * * * ?")
+    public void timeTask(){
+        System.out.println(sdf.format(new Date()));
+    }
+
 }

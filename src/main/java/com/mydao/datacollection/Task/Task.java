@@ -19,7 +19,7 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 @Component
-public class DemoTask {
+public class Task {
 
     @Autowired
     private ConsumeWasteMapper consumeWesteMapper;

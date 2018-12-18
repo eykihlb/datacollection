@@ -1,3 +1,4 @@
+/*
 package com.mydao.datacollection.Task;
 
 import com.mydao.datacollection.dao.station.ConstLaneMapper;
@@ -12,6 +13,7 @@ import com.mydao.datacollection.utils.DateUtil;
 import com.mydao.datacollection.utils.NetUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
@@ -42,14 +44,17 @@ public class Task {
     @Value("${current.isopen}")
     private String isOpen;
 
+    @Value("${current.serverip}")
+    private String serverip;
+
     private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     private SimpleDateFormat s = new SimpleDateFormat("yyyy-MM-dd");
 
     @Scheduled(cron = "0 11 2/2 * * ?")
     public void chuanshu() throws Exception{
         System.out.println("网络状态检测中。。。。。");
-        while (!NetUtils.isReachable("10.65.1.11")){
-            System.out.println("网络连接失败，正在尝试重连。。。。。");
+        while (!NetUtils.isReachable(serverip)){
+            System.out.println("连接到："+serverip+" 失败，正在尝试重连。。。。。");
             Thread.sleep(30000);
         }
         //获取站出口车道
@@ -269,3 +274,4 @@ public class Task {
     }
 
 }
+*/

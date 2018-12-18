@@ -159,47 +159,39 @@
     select
       t.*
     from
-      Data_transaction t,Data_weight d
+      Data_transaction t
     where
       t.TRANSACTIONDATE &gt;= to_date(#{beginHours},'yyyy-MM-dd HH24:Mi:ss') and
       t.TRANSACTIONDATE &lt;= to_date(#{endHours},'yyyy-MM-dd HH24:Mi:ss') AND
       t.LANENO = #{laneNo} and
       t.LANETYPE = 1 and
-      t.LANENO = d.laneno(+) and
-      t.netno = d.netno(+) and
-      t.siteno = d.siteno(+) and
-      t.transactiondate = d.transactiondate(+) and
       t.MOPNO not in (00,07,48,38,39,37,51) and
-      t.uploadFlag = 0
+      t.uploadFlag != 1
   </select>
   <select id="selectByDays" parameterType="java.util.Map" resultMap="BaseResultMap">
-    select
-      t.*,d.axletypeandweight
-    from
-      Data_transaction t,Data_weight d
-    where
-      t.TRANSACTIONDATE &gt;= to_date(#{beginDays},'yyyy-MM-dd HH24:Mi:ss') and
-      t.TRANSACTIONDATE &lt;= to_date(#{endDays},'yyyy-MM-dd HH24:Mi:ss') and
-      t.LANETYPE = 1 and
-      t.LANENO = d.laneno(+) and
-      t.netno = d.netno(+) and
-      t.siteno = d.siteno(+) and
-      t.transactiondate = d.transactiondate(+) and
-      t.MOPNO not in (00,07,48,38,39,37,51) and
-      t.uploadFlag = 0
+    select t1.* from (
+      select
+        t.*,rownum rn
+      from
+        Data_transaction t
+      where
+        t.TRANSACTIONDATE &gt;= to_date(#{beginDays},'yyyy-MM-dd HH24:Mi:ss') and
+        t.TRANSACTIONDATE &lt;= to_date(#{endDays},'yyyy-MM-dd HH24:Mi:ss') and
+        t.LANETYPE = 1 and
+        t.netno||t.siteno = #{netSiteNo} AND
+        t.laneno = #{laneNo} AND
+        t.MOPNO not in (00,07,48,38,39,37,51) and
+        t.uploadFlag != 1
+    ) t1 where rn &lt;= 100
   </select>
   <select id="selectMissDate" parameterType="java.util.Map" resultMap="BaseResultMap">
     select
       to_char(t.TRANSACTIONDATE,'yyyy-MM-dd') missdate
     from
-      Data_transaction t,Data_weight d
+      Data_transaction t
     where
       t.LANETYPE = 1 and
-      t.netno = d.netno(+) and
-      t.siteno = d.siteno(+) and
-      t.LANENO = d.laneno(+) and
-      t.transactiondate = d.transactiondate(+)  and
-      t.uploadFlag = 0 and
+      t.uploadFlag != 1 and
       t.MOPNO not in (00,07,48,38,39,37,51)
     group by
       to_char(t.TRANSACTIONDATE,'yyyy-MM-dd')
@@ -207,7 +199,9 @@
   <update id="updateRecord" parameterType="com.mydao.datacollection.entity.station.DataTransaction">
     update Data_transaction set uploadflag = 1 where netno = #{netno} and siteno = #{siteno} and laneno = #{laneno} and TRANSACTIONDATE = #{transactiondate}
   </update>
-
+  <update id="updateUploadFlag" parameterType="com.mydao.datacollection.entity.station.DataTransaction">
+    update Data_transaction set uploadflag = #{uploadflag} where netno = #{netno} and siteno = #{siteno} and laneno = #{laneno} and TRANSACTIONDATE = #{transactiondate}
+  </update>
   <update id="updateBatch" parameterType="java.util.List">
     <foreach collection="list" item="item" index="index" separator=";">
       update Data_transaction set uploadflag = 1 where netno = #{item.netno} and siteno = #{item.siteno} and laneno = #{item.laneno} and to_char(TRANSACTIONDATE,'yyyy-MM-dd HH24:Mi:ss') = to_char(#{item.transactiondate},'yyyy-MM-dd HH24:Mi:ss') and uploadflag = 0

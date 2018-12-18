@@ -33,3 +33,4 @@ current:
    siteno: '10'
    netno: '10'
    isopen: '1'
+   serverip: 10.65.1.11

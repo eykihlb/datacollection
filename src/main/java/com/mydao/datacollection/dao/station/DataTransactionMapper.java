@@ -15,4 +15,5 @@ public interface DataTransactionMapper {
     Integer updateRecord(DataTransaction dataTransaction);
 
     Integer updateBatch(List<DataTransaction> list);
+    Integer updateUploadFlag(DataTransaction dataTransaction);
 }

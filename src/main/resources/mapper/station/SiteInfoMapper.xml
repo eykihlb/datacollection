@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mydao.datacollection.dao.station.SiteInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.mydao.datacollection.entity.station.SiteInfo" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="NET_SITE_NO" property="netSiteNo" jdbcType="VARCHAR" />
+    <result column="LANE_ID" property="laneId" jdbcType="VARCHAR" />
+    <result column="STATUS" property="status" jdbcType="VARCHAR" />
+    <result column="IP" property="ip" jdbcType="VARCHAR" />
+    <result column="SITETYPE" property="sitetype" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, NET_SITE_NO, LANE_ID, STATUS, IP,SITETYPE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from SITEINFO
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from SITEINFO
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insertSelective" parameterType="com.mydao.datacollection.entity.station.SiteInfo" >
+    insert into SITEINFO
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="netSiteNo != null" >
+        NET_SITE_NO,
+      </if>
+      <if test="laneId != null" >
+        LANE_ID,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+      <if test="ip != null" >
+        IP,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="netSiteNo != null" >
+        #{netSiteNo,jdbcType=VARCHAR},
+      </if>
+      <if test="laneId != null" >
+        #{laneId,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="ip != null" >
+        #{ip,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mydao.datacollection.entity.station.SiteInfo" >
+    update SITEINFO
+    <set >
+      <if test="netSiteNo != null" >
+        NET_SITE_NO = #{netSiteNo,jdbcType=VARCHAR},
+      </if>
+      <if test="laneId != null" >
+        LANE_ID = #{laneId,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="ip != null" >
+        IP = #{ip,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+
+  <select id="findList" resultMap="BaseResultMap">
+    select * from SITEINFO where status = '1'
+  </select>
+</mapper>

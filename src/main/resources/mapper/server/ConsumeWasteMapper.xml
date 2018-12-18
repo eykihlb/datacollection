@@ -48,7 +48,7 @@
     delete from ConsumeWaste01
     where ID = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insertSelective01" parameterType="com.mydao.datacollection.entity.server.ConsumeWaste" >
+  <insert id="insertSelective01" useGeneratedKeys="true" keyProperty="id" parameterType="com.mydao.datacollection.entity.server.ConsumeWaste" >
     insert into ConsumeWaste01
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -229,7 +229,7 @@
       </if>
     </trim>
   </insert>
-  <insert id="insertSelective02" parameterType="com.mydao.datacollection.entity.server.ConsumeWaste" >
+  <insert id="insertSelective02" useGeneratedKeys="true" keyProperty="id" parameterType="com.mydao.datacollection.entity.server.ConsumeWaste" >
     insert into ConsumeWaste02
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -410,7 +410,7 @@
       </if>
     </trim>
   </insert>
-  <insert id="insertSelective03" parameterType="com.mydao.datacollection.entity.server.ConsumeWaste" >
+  <insert id="insertSelective03" useGeneratedKeys="true" keyProperty="id"  parameterType="com.mydao.datacollection.entity.server.ConsumeWaste" >
     insert into ConsumeWaste03
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -591,7 +591,7 @@
       </if>
     </trim>
   </insert>
-  <insert id="insertSelective04" parameterType="com.mydao.datacollection.entity.server.ConsumeWaste" >
+  <insert id="insertSelective04" useGeneratedKeys="true" keyProperty="id"  parameterType="com.mydao.datacollection.entity.server.ConsumeWaste" >
     insert into ConsumeWaste04
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -772,7 +772,7 @@
       </if>
     </trim>
   </insert>
-  <insert id="insertSelective05" parameterType="com.mydao.datacollection.entity.server.ConsumeWaste" >
+  <insert id="insertSelective05" useGeneratedKeys="true" keyProperty="id"  parameterType="com.mydao.datacollection.entity.server.ConsumeWaste" >
     insert into ConsumeWaste05
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -953,7 +953,7 @@
       </if>
     </trim>
   </insert>
-  <insert id="insertSelective06" parameterType="com.mydao.datacollection.entity.server.ConsumeWaste" >
+  <insert id="insertSelective06" useGeneratedKeys="true" keyProperty="id"  parameterType="com.mydao.datacollection.entity.server.ConsumeWaste" >
     insert into ConsumeWaste06
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -1134,7 +1134,7 @@
       </if>
     </trim>
   </insert>
-  <insert id="insertSelective07" parameterType="com.mydao.datacollection.entity.server.ConsumeWaste" >
+  <insert id="insertSelective07" useGeneratedKeys="true" keyProperty="id"  parameterType="com.mydao.datacollection.entity.server.ConsumeWaste" >
     insert into ConsumeWaste07
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -1315,7 +1315,7 @@
       </if>
     </trim>
   </insert>
-  <insert id="insertSelective08" parameterType="com.mydao.datacollection.entity.server.ConsumeWaste" >
+  <insert id="insertSelective08" useGeneratedKeys="true" keyProperty="id"  parameterType="com.mydao.datacollection.entity.server.ConsumeWaste" >
     insert into ConsumeWaste08
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -1496,7 +1496,7 @@
       </if>
     </trim>
   </insert>
-  <insert id="insertSelective09" parameterType="com.mydao.datacollection.entity.server.ConsumeWaste" >
+  <insert id="insertSelective09" useGeneratedKeys="true" keyProperty="id"  parameterType="com.mydao.datacollection.entity.server.ConsumeWaste" >
     insert into ConsumeWaste09
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -1677,7 +1677,7 @@
       </if>
     </trim>
   </insert>
-  <insert id="insertSelective10" parameterType="com.mydao.datacollection.entity.server.ConsumeWaste" >
+  <insert id="insertSelective10" useGeneratedKeys="true" keyProperty="id"  parameterType="com.mydao.datacollection.entity.server.ConsumeWaste" >
     insert into ConsumeWaste10
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -1858,7 +1858,7 @@
       </if>
     </trim>
   </insert>
-  <insert id="insertSelective11" parameterType="com.mydao.datacollection.entity.server.ConsumeWaste" >
+  <insert id="insertSelective11"  useGeneratedKeys="true" keyProperty="id" parameterType="com.mydao.datacollection.entity.server.ConsumeWaste" >
     insert into ConsumeWaste11
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -2039,7 +2039,7 @@
       </if>
     </trim>
   </insert>
-  <insert id="insertSelective12" parameterType="com.mydao.datacollection.entity.server.ConsumeWaste" >
+  <insert id="insertSelective12" useGeneratedKeys="true" keyProperty="id"  parameterType="com.mydao.datacollection.entity.server.ConsumeWaste" >
     insert into ConsumeWaste12
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >

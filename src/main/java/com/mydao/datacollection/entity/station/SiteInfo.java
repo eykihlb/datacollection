@@ -11,6 +11,15 @@ public class SiteInfo {
 
     private String ip;
     private String sitetype;
+    private String fullNetNo;
+
+    public String getFullNetNo() {
+        return fullNetNo;
+    }
+
+    public void setFullNetNo(String fullNetNo) {
+        this.fullNetNo = fullNetNo;
+    }
 
     public String getSitetype() {
         return sitetype;

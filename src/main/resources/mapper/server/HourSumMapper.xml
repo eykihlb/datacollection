@@ -117,4 +117,9 @@
       (#{item.id},#{item.netno},#{item.plazano},#{item.sumhour},#{item.exitlane},#{item.totaltraffic},#{item.checkflag},#{item.uploadtime})
     </foreach>
   </insert>
+
+  <select id="selectList" parameterType="com.mydao.datacollection.entity.server.HourSum" resultMap="BaseResultMap">
+    select * from HourSum where SumHour = #{sumhour} and ExitLane = #{exitlane} and
+    NetNo = #{netno} and PlazaNo = #{plazano}
+  </select>
 </mapper>

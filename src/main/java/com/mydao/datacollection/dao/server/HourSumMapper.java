@@ -21,4 +21,6 @@ public interface HourSumMapper {
     Integer updateByHours(HourSum record);
 
     int insertBatch(List<HourSum> list);
+
+    HourSum selectList(HourSum record);
 }

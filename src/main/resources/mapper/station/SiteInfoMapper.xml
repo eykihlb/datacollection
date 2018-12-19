@@ -8,9 +8,10 @@
     <result column="STATUS" property="status" jdbcType="VARCHAR" />
     <result column="IP" property="ip" jdbcType="VARCHAR" />
     <result column="SITETYPE" property="sitetype" jdbcType="VARCHAR" />
+    <result column="FULL_NET_NO" property="fullNetNo" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    ID, NET_SITE_NO, LANE_ID, STATUS, IP,SITETYPE
+    ID, NET_SITE_NO, LANE_ID, STATUS, IP,SITETYPE,FULL_NET_NO
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 

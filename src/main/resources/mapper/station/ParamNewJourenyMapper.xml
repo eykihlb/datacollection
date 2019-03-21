@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mydao.datacollection.dao.station.ParamNewJourenyMapper">
+  <resultMap id="BaseResultMap" type="com.mydao.datacollection.entity.station.ParamNewJoureny">
+    <id column="ID" jdbcType="VARCHAR" property="id" />
+    <result column="ENSTATIONID" jdbcType="VARCHAR" property="enstationid" />
+    <result column="EXSTATIONID" jdbcType="VARCHAR" property="exstationid" />
+    <result column="DISTANCE" jdbcType="VARCHAR" property="distance" />
+    <result column="MINTIME" jdbcType="VARCHAR" property="mintime" />
+    <result column="MAXTIME" jdbcType="VARCHAR" property="maxtime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ID, ENSTATIONID, EXSTATIONID, DISTANCE, MINTIME, MAXTIME
+  </sql>
+  <select id="selectDis" parameterType="com.mydao.datacollection.entity.station.ParamNewJoureny" resultMap="BaseResultMap">
+    select DISTANCE from param_new_joureny where ENSTATIONID = #{enstationid} and EXSTATIONID = #{exstationid}
+  </select>
+</mapper>

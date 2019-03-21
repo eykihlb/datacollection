@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mydao.datacollection.dao.station.TblExitWasteMapper">
+  <resultMap id="BaseResultMap" type="com.mydao.datacollection.entity.station.TblExitWaste">
+    <id column="EXITTIME" jdbcType="TIMESTAMP" property="exittime" />
+    <id column="EXITSTATIONID" jdbcType="DECIMAL" property="exitstationid" />
+    <id column="EXITLANEID" jdbcType="DECIMAL" property="exitlaneid" />
+    <id column="EXITWASTESN" jdbcType="DECIMAL" property="exitwastesn" />
+    <result column="LANETYPE" jdbcType="DECIMAL" property="lanetype" />
+    <result column="LANEAPPVER" jdbcType="DECIMAL" property="laneappver" />
+    <result column="LOGINTIME" jdbcType="TIMESTAMP" property="logintime" />
+    <result column="TRIGGERTIME" jdbcType="TIMESTAMP" property="triggertime" />
+    <result column="WORKDATE" jdbcType="TIMESTAMP" property="workdate" />
+    <result column="SHIFTID" jdbcType="DECIMAL" property="shiftid" />
+    <result column="OPERATORID" jdbcType="DECIMAL" property="operatorid" />
+    <result column="GROUPID" jdbcType="DECIMAL" property="groupid" />
+    <result column="CARDSN" jdbcType="DECIMAL" property="cardsn" />
+    <result column="CARDCOUNTER" jdbcType="DECIMAL" property="cardcounter" />
+    <result column="CARDID" jdbcType="DECIMAL" property="cardid" />
+    <result column="CARDBOXID" jdbcType="DECIMAL" property="cardboxid" />
+    <result column="PAYCARDID" jdbcType="DECIMAL" property="paycardid" />
+    <result column="OBUID" jdbcType="DECIMAL" property="obuid" />
+    <result column="PAYCARDTRANSN" jdbcType="DECIMAL" property="paycardtransn" />
+    <result column="PAYCARDBALANCE" jdbcType="DECIMAL" property="paycardbalance" />
+    <result column="TAC" jdbcType="DECIMAL" property="tac" />
+    <result column="PAYCARDREBATE" jdbcType="DECIMAL" property="paycardrebate" />
+    <result column="PSAMID" jdbcType="DECIMAL" property="psamid" />
+    <result column="PSAMTRADESN" jdbcType="DECIMAL" property="psamtradesn" />
+    <result column="VTYPE" jdbcType="DECIMAL" property="vtype" />
+    <result column="PVCLASS" jdbcType="DECIMAL" property="pvclass" />
+    <result column="BVCLASS" jdbcType="DECIMAL" property="bvclass" />
+    <result column="VCLASS" jdbcType="DECIMAL" property="vclass" />
+    <result column="AUTOVCLASS" jdbcType="DECIMAL" property="autovclass" />
+    <result column="AUTOVLP" jdbcType="VARCHAR" property="autovlp" />
+    <result column="VLP" jdbcType="VARCHAR" property="vlp" />
+    <result column="AXLENUM" jdbcType="DECIMAL" property="axlenum" />
+    <result column="AUTOAXISTYPE" jdbcType="DECIMAL" property="autoaxistype" />
+    <result column="AXISTYPE" jdbcType="DECIMAL" property="axistype" />
+    <result column="AUTOAXISINFO" jdbcType="VARCHAR" property="autoaxisinfo" />
+    <result column="AXISINFO" jdbcType="VARCHAR" property="axisinfo" />
+    <result column="TOTALWEIGHT" jdbcType="DECIMAL" property="totalweight" />
+    <result column="LIMITWEIGHT" jdbcType="DECIMAL" property="limitweight" />
+    <result column="OVERWEIGHTRATE" jdbcType="DECIMAL" property="overweightrate" />
+    <result column="PAYTYPE" jdbcType="DECIMAL" property="paytype" />
+    <result column="DEALSTATUS" jdbcType="VARCHAR" property="dealstatus" />
+    <result column="DEVSTATUS" jdbcType="VARCHAR" property="devstatus" />
+    <result column="VCNT" jdbcType="DECIMAL" property="vcnt" />
+    <result column="KEYPRESSINFO" jdbcType="VARCHAR" property="keypressinfo" />
+    <result column="ASSUEENTRY" jdbcType="DECIMAL" property="assueentry" />
+    <result column="ENTRYSTATION" jdbcType="DECIMAL" property="entrystation" />
+    <result column="ENTRYLANE" jdbcType="DECIMAL" property="entrylane" />
+    <result column="ENTRYTIME" jdbcType="TIMESTAMP" property="entrytime" />
+    <result column="ENTRYWASTESN" jdbcType="DECIMAL" property="entrywastesn" />
+    <result column="ENTRYOPERATORID" jdbcType="DECIMAL" property="entryoperatorid" />
+    <result column="ENTRYVCLASS" jdbcType="DECIMAL" property="entryvclass" />
+    <result column="ENTRYVTYPE" jdbcType="DECIMAL" property="entryvtype" />
+    <result column="ENTRYAXISTYPE" jdbcType="DECIMAL" property="entryaxistype" />
+    <result column="ENTRYVLP" jdbcType="VARCHAR" property="entryvlp" />
+    <result column="ENTRYPSAMID" jdbcType="DECIMAL" property="entrypsamid" />
+    <result column="OVERTIME" jdbcType="DECIMAL" property="overtime" />
+    <result column="TOLLDISTANCE" jdbcType="DECIMAL" property="tolldistance" />
+    <result column="REALDISTANCE" jdbcType="DECIMAL" property="realdistance" />
+    <result column="BASEENTRYMONEY" jdbcType="DECIMAL" property="baseentrymoney" />
+    <result column="BASEMONEY" jdbcType="DECIMAL" property="basemoney" />
+    <result column="OVERWEIGHTMONEY" jdbcType="DECIMAL" property="overweightmoney" />
+    <result column="FREEMONEY" jdbcType="DECIMAL" property="freemoney" />
+    <result column="UNPAYMONEY" jdbcType="DECIMAL" property="unpaymoney" />
+    <result column="CASHMONEY" jdbcType="DECIMAL" property="cashmoney" />
+    <result column="STOREMONEY" jdbcType="DECIMAL" property="storemoney" />
+    <result column="TALLYMONEY" jdbcType="DECIMAL" property="tallymoney" />
+    <result column="UNIPAYMONEY" jdbcType="DECIMAL" property="unipaymoney" />
+    <result column="CARDCOSTMONEY" jdbcType="DECIMAL" property="cardcostmoney" />
+    <result column="STOREBALANCEMONEY" jdbcType="DECIMAL" property="storebalancemoney" />
+    <result column="INVOICEID" jdbcType="DECIMAL" property="invoiceid" />
+    <result column="INVOICECNT" jdbcType="DECIMAL" property="invoicecnt" />
+    <result column="TOLLVER" jdbcType="DECIMAL" property="tollver" />
+    <result column="TOLLRATEVER" jdbcType="DECIMAL" property="tollratever" />
+    <result column="FLAGSTATIONINFO" jdbcType="VARCHAR" property="flagstationinfo" />
+    <result column="FREETYPE" jdbcType="DECIMAL" property="freetype" />
+    <result column="FREEAREA" jdbcType="VARCHAR" property="freearea" />
+    <result column="SPLITNUM" jdbcType="DECIMAL" property="splitnum" />
+    <result column="SPLITINFO" jdbcType="VARCHAR" property="splitinfo" />
+    <result column="VERIFYCODE" jdbcType="DECIMAL" property="verifycode" />
+    <result column="MODIFYFLAG" jdbcType="DECIMAL" property="modifyflag" />
+    <result column="SPARE1" jdbcType="DECIMAL" property="spare1" />
+    <result column="SPARE2" jdbcType="DECIMAL" property="spare2" />
+    <result column="SPARE3" jdbcType="DECIMAL" property="spare3" />
+    <result column="SPARE4" jdbcType="VARCHAR" property="spare4" />
+    <result column="TRANSFLAG" jdbcType="DECIMAL" property="transflag" />
+    <result column="ISSUERID" jdbcType="VARCHAR" property="issuerid" />
+    <result column="CARDNETID" jdbcType="VARCHAR" property="cardnetid" />
+    <result column="CARDID2" jdbcType="VARCHAR" property="cardid2" />
+    <result column="PAYCARDID2" jdbcType="VARCHAR" property="paycardid2" />
+    <result column="TERMINALID" jdbcType="VARCHAR" property="terminalid" />
+    <result column="KEYVERSION" jdbcType="DECIMAL" property="keyversion" />
+    <result column="UPLOADTIME" jdbcType="TIMESTAMP" property="uploadtime" />
+    <result column="OBUID2" jdbcType="VARCHAR" property="obuid2" />
+    <result column="TRANSTYPE" jdbcType="DECIMAL" property="transtype" />
+    <result column="ISUPLOAD" jdbcType="CHAR" property="isupload" />
+    <result column="IMAGEPATH" jdbcType="VARCHAR" property="imagepath" />
+    <result column="LANENO" jdbcType="CHAR" property="laneno" />
+    <result column="IMAGEPATH2" jdbcType="VARCHAR" property="imagepath2" />
+  </resultMap>
+  <select id="selectByPrimaryKey" parameterType="com.mydao.datacollection.entity.station.TblExitWasteKey" resultMap="BaseResultMap">
+    select 
+    *
+    from TBL_EXITWASTE
+    where EXITTIME = #{exittime,jdbcType=TIMESTAMP}
+      and EXITSTATIONID = #{exitstationid,jdbcType=DECIMAL}
+      and EXITLANEID = #{exitlaneid,jdbcType=DECIMAL}
+      and EXITWASTESN = #{exitwastesn,jdbcType=DECIMAL}
+  </select>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mydao.datacollection.entity.station.TblExitWaste">
+    update TBL_EXITWASTE
+    <set>
+      <if test="isupload != null">
+        isupload = #{isupload},
+      </if>
+    </set>
+    where EXITTIME = #{exittime,jdbcType=TIMESTAMP}
+      and EXITSTATIONID = #{exitstationid,jdbcType=DECIMAL}
+      and EXITLANEID = #{exitlaneid,jdbcType=DECIMAL}
+      and EXITWASTESN = #{exitwastesn,jdbcType=DECIMAL}
+  </update>
+
+  <select id="selectList" resultMap="BaseResultMap">
+    select d.* from (select t.*,rownum rn from TBL_EXITWASTE t where to_char(t.EXITTIME,'yyyy-MM-dd HH24:Mi:ss') >= '2019-01-01 00:00:00' and t.OPERATORID = '999999' and isupload != 0 and isupload != 8) d
+    where d.rn &lt;= 100
+  </select>
+
+  <select id="selectMissDate" parameterType="java.util.Map" resultType="java.util.List">
+    select
+    to_char(t.EXITTIME,'yyyy-MM-dd') missdate
+    from
+    TBL_EXITWASTE t
+    where
+    t.isupload != 8 AND
+    t.isupload !=0 and t.OPERATORID = '999999'
+    and to_char(t.EXITTIME,'yyyy-MM-dd') >= '2019-01-01 00:00:00'
+    group by
+    to_char(t.EXITTIME,'yyyy-MM-dd')
+  </select>
+
+</mapper>

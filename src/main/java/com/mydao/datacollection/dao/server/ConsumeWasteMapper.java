@@ -5,6 +5,7 @@ import com.mydao.datacollection.entity.server.ConsumeWaste;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
+import java.util.Map;
 
 @Mapper
 public interface ConsumeWasteMapper {
@@ -23,6 +24,7 @@ public interface ConsumeWasteMapper {
     int insertSelective10(ConsumeWaste record);
     int insertSelective11(ConsumeWaste record);
     int insertSelective12(ConsumeWaste record);
+    List<ConsumeWaste> selectRecords();
 
     int insertByBatch01(List<ConsumeWaste> list);
     int insertByBatch02(List<ConsumeWaste> list);
@@ -39,5 +41,30 @@ public interface ConsumeWasteMapper {
 
     ConsumeWaste selectByPrimaryKey(Integer id);
 
+    List<ConsumeWaste> seletList();
+    List<ConsumeWaste> selectPlate();
+    ConsumeWaste selectById(Long id);
+    List<ConsumeWaste> groupByID();
+
     int updateByPrimaryKeySelective(ConsumeWaste record);
+
+    List<ConsumeWaste> findList01();
+    List<ConsumeWaste> findList02();
+    List<ConsumeWaste> findList03();
+    List<ConsumeWaste> findList04();
+    List<ConsumeWaste> findList05();
+    List<ConsumeWaste> findList06();
+    List<ConsumeWaste> findList07();
+    List<ConsumeWaste> findList08();
+    List<ConsumeWaste> findList09();
+    List<ConsumeWaste> findList10();
+    List<ConsumeWaste> findList11();
+    List<ConsumeWaste> findList12();
+    List<ConsumeWaste> findcourse02();
+    List<ConsumeWaste> adasdasd();
+
+    Integer updatecarclass0();
+    Integer updatecarclass1();
+    Integer updatecourse();
+    Integer updateFreetype();
 }

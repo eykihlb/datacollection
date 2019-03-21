@@ -29,8 +29,11 @@ spring:
       min-evictable-idle-time-millis: 1000000
       removeAbandoned: true
       removeAbandonedTimeout: 180
-current:
-   siteno: '10'
-   netno: '10'
-   isopen: '1'
-   serverip: 10.65.1.11
+sitecfg:
+  datatime: 2018-12-21
+  netno: '02'
+  siteno: '26'
+  fnetno: '65002'
+  fsiteno: '17'
+  sitetype: '1' # 1：开放式  0：封闭式
+  month: '1'

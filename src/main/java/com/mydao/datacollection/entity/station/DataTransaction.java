@@ -1,5 +1,7 @@
 package com.mydao.datacollection.entity.station;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.math.BigDecimal;
 import java.util.Date;
 
@@ -26,6 +28,7 @@ public class DataTransaction {
 
     private String staffname;
 
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date transactiondate;
 
     private String transactionno;

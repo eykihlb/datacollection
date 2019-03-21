@@ -2221,7 +2221,7 @@
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.mydao.datacollection.entity.server.ConsumeWaste" >
-    update ConsumeWaste01
+    update ConsumeWaste02
     <set >
       <if test="entrynetno != null" >
         EntryNetNo = #{entrynetno,jdbcType=VARCHAR},
@@ -2551,4 +2551,91 @@
       #{item.hoursumid})
     </foreach>
   </insert>
+
+  <select id="seletList" resultMap="BaseResultMap">
+    select hoursumid,count(1) as AxleCount from ConsumeWaste12 group by hoursumid
+  </select>
+
+  <select id="selectPlate" resultMap="BaseResultMap">
+    select id from ConsumeWaste12
+  </select>
+  <select id="selectById" resultMap="BaseResultMap" parameterType="java.lang.Long">
+    select id,hoursumid,exittime from ConsumeWaste12 where id = #{id}
+  </select>
+
+  <select id="groupByID" resultMap="BaseResultMap">
+    select hoursumid,count(1) as AxleCount from ConsumeWaste12 where sendtime > '2018-12-22 11:11:11' group by hoursumid
+  </select>
+
+  <select id="selectRecords" resultMap="BaseResultMap">
+  SELECT hoursumid,count(1) entrynetno
+  FROM ConsumeWaste12 where isETC = 0 group by hoursumid;
+  </select>
+
+  <select id="findList01" resultMap="BaseResultMap">
+    select top 1000 course,id from ConsumeWaste01 where course = '.000'
+  </select>
+
+  <select id="findList02" resultMap="BaseResultMap">
+    select top 1000 course,id from ConsumeWaste02 where course = '.000'
+  </select>
+
+  <select id="findcourse02" resultMap="BaseResultMap">
+    select top 1000 course,id from ConsumeWaste02 where course not like '%.%'
+  </select>
+
+  <select id="adasdasd" resultMap="BaseResultMap">
+    select course,id from ConsumeWaste02 where charindex('.',course) > 4
+  </select>
+  <select id="findList03" resultMap="BaseResultMap">
+    select top 1000 course,id from ConsumeWaste03 where course = '.000'
+  </select>
+
+  <select id="findList04" resultMap="BaseResultMap">
+    select top 1000 course,id from ConsumeWaste04 where course = '.000'
+  </select>
+
+  <select id="findList05" resultMap="BaseResultMap">
+    select top 1000 course,id from ConsumeWaste05 where course = '.000'
+  </select>
+
+  <select id="findList06" resultMap="BaseResultMap">
+    select top 1000 entrynetno,entryplazano,id,isetc from ConsumeWaste06 where datalength(entrynetno) &lt; 5
+  </select>
+
+  <select id="findList07" resultMap="BaseResultMap">
+    select top 1000 entrynetno,entryplazano,id,isetc from ConsumeWaste07 where datalength(entrynetno) &lt; 5
+  </select>
+
+  <select id="findList08" resultMap="BaseResultMap">
+    select top 1000 entrynetno,entryplazano,id,isetc from ConsumeWaste08 where datalength(entrynetno) &lt; 5
+  </select>
+
+  <select id="findList09" resultMap="BaseResultMap">
+    select top 1000 entrynetno,entryplazano,id,isetc from ConsumeWaste09 where datalength(entrynetno) &lt; 5
+  </select>
+
+  <select id="findList010" resultMap="BaseResultMap">
+    select top 1000 entrynetno,entryplazano,id,isetc from ConsumeWaste10 where datalength(entrynetno) &lt; 5
+  </select>
+
+  <select id="findList11" resultMap="BaseResultMap">
+    select top 1000 entrynetno,entryplazano,id,isetc from ConsumeWaste11 where datalength(entrynetno) &lt; 5
+  </select>
+
+  <select id="findList12" resultMap="BaseResultMap">
+    select top 1000 entrynetno,entryplazano,id,isetc from ConsumeWaste12 where datalength(entrynetno) &lt; 5
+  </select>
+  <update id="updateFreetype">
+    update ConsumeWaste02 set freetype = 1 where isetc = 1
+  </update>
+  <update id="updatecarclass0">
+    update ConsumeWaste02 set carclass = 0 where cartype in (1,2,3,4)
+  </update>
+  <update id="updatecarclass1">
+    update ConsumeWaste02 set carclass = 1 where cartype in (11,12,13,14,15)
+  </update>
+  <update id="updatecourse">
+    update ConsumeWaste02 set course = '0.000' where course = '.000'
+  </update>
 </mapper>

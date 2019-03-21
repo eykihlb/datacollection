@@ -65,4 +65,12 @@ public class DateUtil {
         }
         return  resultList;
     }
+
+    public static Map<String,Object> getDaysHours(Date date){
+        Map<String,Object> map = new HashMap<>();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        map.put("start",sdf.format(date) + " 00:00:00");
+        map.put("end",sdf.format(date) + " 23:59:59");
+        return map;
+    }
 }

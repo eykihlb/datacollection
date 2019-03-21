@@ -171,17 +171,21 @@
   <select id="selectByDays" parameterType="java.util.Map" resultMap="BaseResultMap">
     select t1.* from (
       select
-        t.*,rownum rn
+        t.*,rownum rn,d.axletypeandweight
       from
-        Data_transaction t
+        Data_transaction t,data_weight d
       where
         t.TRANSACTIONDATE &gt;= to_date(#{beginDays},'yyyy-MM-dd HH24:Mi:ss') and
         t.TRANSACTIONDATE &lt;= to_date(#{endDays},'yyyy-MM-dd HH24:Mi:ss') and
         t.LANETYPE = 1 and
+        t.netno = d.netno(+) AND
+        t.siteno = d.siteno(+) AND
+        t.transactiondate = d.transactiondate(+) AND
+        t.laneno = d.laneno(+) AND
+        t.lanetype = d.lanetype(+) AND
         t.netno||t.siteno = #{netSiteNo} AND
-        t.laneno = #{laneNo} AND
         t.MOPNO not in (00,07,48,38,39,37,51) and
-        t.uploadFlag != 1
+        (t.uploadFlag != 1 or t.uploadflag is null)
     ) t1 where rn &lt;= 100
   </select>
   <select id="selectMissDate" parameterType="java.util.Map" resultMap="BaseResultMap">
@@ -191,8 +195,9 @@
       Data_transaction t
     where
       t.LANETYPE = 1 and
-      t.uploadFlag != 1 and
-      t.MOPNO not in (00,07,48,38,39,37,51)
+      (t.uploadFlag != 1 or t.uploadflag is null) and
+      t.MOPNO not in (00,07,48,38,39,37,51) and
+      to_char(t.TRANSACTIONDATE,'yyyy-MM-dd HH24:Mi:ss') >= '2019-01-01 00:00:00'
     group by
       to_char(t.TRANSACTIONDATE,'yyyy-MM-dd')
   </select>
@@ -207,4 +212,920 @@
       update Data_transaction set uploadflag = 1 where netno = #{item.netno} and siteno = #{item.siteno} and laneno = #{item.laneno} and to_char(TRANSACTIONDATE,'yyyy-MM-dd HH24:Mi:ss') = to_char(#{item.transactiondate},'yyyy-MM-dd HH24:Mi:ss') and uploadflag = 0
     </foreach>
   </update>
+  <select id="count" parameterType="java.util.Map" resultType="java.lang.Integer">
+    select count(*) from Data_transaction where netno||netno = #{netsiteno} and laneno = #{laneno} and  to_char(transactiondate,'yyyy-MM-dd HH24') = #{datetime}
+  </select>
+
+  <select id="selectPlate" parameterType="java.util.Map" resultMap="BaseResultMap">
+    select PARVEHICLEPLATE,classno from Data_transaction where netno||siteno = #{netsiteno} and laneno = #{laneno} and  to_char(transactiondate,'yyyy-MM-dd HH24:Mi:ss') = #{datetime}
+  </select>
+
+  <insert id="insertSelective" parameterType="com.mydao.datacollection.entity.station.DataTransaction">
+    insert into DATA_TRANSACTION
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="netno != null">
+        NETNO,
+      </if>
+      <if test="siteno != null">
+        SITENO,
+      </if>
+      <if test="laneno != null">
+        LANENO,
+      </if>
+      <if test="lanetype != null">
+        LANETYPE,
+      </if>
+      <if test="lanemode != null">
+        LANEMODE,
+      </if>
+      <if test="cetc != null">
+        CETC,
+      </if>
+      <if test="jobno != null">
+        JOBNO,
+      </if>
+      <if test="jobbegin != null">
+        JOBBEGIN,
+      </if>
+      <if test="squadno != null">
+        SQUADNO,
+      </if>
+      <if test="staffno != null">
+        STAFFNO,
+      </if>
+      <if test="staffname != null">
+        STAFFNAME,
+      </if>
+      <if test="transactiondate != null">
+        TRANSACTIONDATE,
+      </if>
+      <if test="transactionno != null">
+        TRANSACTIONNO,
+      </if>
+      <if test="indxno != null">
+        INDXNO,
+      </if>
+      <if test="obstcsc != null">
+        OBSTCSC,
+      </if>
+      <if test="obsmop != null">
+        OBSMOP,
+      </if>
+      <if test="obssequence != null">
+        OBSSEQUENCE,
+      </if>
+      <if test="obspassage != null">
+        OBSPASSAGE,
+      </if>
+      <if test="classno != null">
+        CLASSNO,
+      </if>
+      <if test="farenetno != null">
+        FARENETNO,
+      </if>
+      <if test="faresiteno != null">
+        FARESITENO,
+      </if>
+      <if test="entrynetno != null">
+        ENTRYNETNO,
+      </if>
+      <if test="entrysiteno != null">
+        ENTRYSITENO,
+      </if>
+      <if test="entrylanetype != null">
+        ENTRYLANETYPE,
+      </if>
+      <if test="entrylaneno != null">
+        ENTRYLANENO,
+      </if>
+      <if test="entrystaffno != null">
+        ENTRYSTAFFNO,
+      </if>
+      <if test="entryclassno != null">
+        ENTRYCLASSNO,
+      </if>
+      <if test="entryvehicleplate != null">
+        ENTRYVEHICLEPLATE,
+      </if>
+      <if test="entrydate != null">
+        ENTRYDATE,
+      </if>
+      <if test="entryjobno != null">
+        ENTRYJOBNO,
+      </if>
+      <if test="entrymopno != null">
+        ENTRYMOPNO,
+      </if>
+      <if test="mopno != null">
+        MOPNO,
+      </if>
+      <if test="ticketno != null">
+        TICKETNO,
+      </if>
+      <if test="faretblversion != null">
+        FARETBLVERSION,
+      </if>
+      <if test="prixtotal != null">
+        PRIXTOTAL,
+      </if>
+      <if test="prixpartial != null">
+        PRIXPARTIAL,
+      </if>
+      <if test="mopdetail != null">
+        MOPDETAIL,
+      </if>
+      <if test="codeoctal != null">
+        CODEOCTAL,
+      </if>
+      <if test="tcscno != null">
+        TCSCNO,
+      </if>
+      <if test="tcscversion != null">
+        TCSCVERSION,
+      </if>
+      <if test="cartridgeno != null">
+        CARTRIDGENO,
+      </if>
+      <if test="tcscorderno != null">
+        TCSCORDERNO,
+      </if>
+      <if test="cartridgecycleno != null">
+        CARTRIDGECYCLENO,
+      </if>
+      <if test="paycscno != null">
+        PAYCSCNO,
+      </if>
+      <if test="exitvehicleplate != null">
+        EXITVEHICLEPLATE,
+      </if>
+      <if test="parvehicleplate != null">
+        PARVEHICLEPLATE,
+      </if>
+      <if test="processtype != null">
+        PROCESSTYPE,
+      </if>
+      <if test="coverweight != null">
+        COVERWEIGHT,
+      </if>
+      <if test="invoicetype != null">
+        INVOICETYPE,
+      </if>
+      <if test="equipstatus != null">
+        EQUIPSTATUS,
+      </if>
+      <if test="cflag != null">
+        CFLAG,
+      </if>
+      <if test="fareclassno != null">
+        FARECLASSNO,
+      </if>
+      <if test="shiftno != null">
+        SHIFTNO,
+      </if>
+      <if test="imagefile != null">
+        IMAGEFILE,
+      </if>
+      <if test="routeno != null">
+        ROUTENO,
+      </if>
+      <if test="fareaxles != null">
+        FAREAXLES,
+      </if>
+      <if test="detectweight != null">
+        DETECTWEIGHT,
+      </if>
+      <if test="overweight != null">
+        OVERWEIGHT,
+      </if>
+      <if test="overweighttype != null">
+        OVERWEIGHTTYPE,
+      </if>
+      <if test="entryaxles != null">
+        ENTRYAXLES,
+      </if>
+      <if test="entryweight != null">
+        ENTRYWEIGHT,
+      </if>
+      <if test="entryoverweight != null">
+        ENTRYOVERWEIGHT,
+      </if>
+      <if test="entryoverweighttype != null">
+        ENTRYOVERWEIGHTTYPE,
+      </if>
+      <if test="entryparvehicleplate != null">
+        ENTRYPARVEHICLEPLATE,
+      </if>
+      <if test="picturecomment != null">
+        PICTURECOMMENT,
+      </if>
+      <if test="picturecomment2 != null">
+        PICTURECOMMENT2,
+      </if>
+      <if test="weightmode != null">
+        WEIGHTMODE,
+      </if>
+      <if test="parvehicleplatecolor != null">
+        PARVEHICLEPLATECOLOR,
+      </if>
+      <if test="distance != null">
+        DISTANCE,
+      </if>
+      <if test="computerate != null">
+        COMPUTERATE,
+      </if>
+      <if test="fareweight != null">
+        FAREWEIGHT,
+      </if>
+      <if test="overweightfare != null">
+        OVERWEIGHTFARE,
+      </if>
+      <if test="axlegroups != null">
+        AXLEGROUPS,
+      </if>
+      <if test="axlegroup1type != null">
+        AXLEGROUP1TYPE,
+      </if>
+      <if test="axlegroup1weight != null">
+        AXLEGROUP1WEIGHT,
+      </if>
+      <if test="axlegroup2type != null">
+        AXLEGROUP2TYPE,
+      </if>
+      <if test="axlegroup2weight != null">
+        AXLEGROUP2WEIGHT,
+      </if>
+      <if test="axlegroup3type != null">
+        AXLEGROUP3TYPE,
+      </if>
+      <if test="axlegroup3weight != null">
+        AXLEGROUP3WEIGHT,
+      </if>
+      <if test="axlegroup4type != null">
+        AXLEGROUP4TYPE,
+      </if>
+      <if test="axlegroup4weight != null">
+        AXLEGROUP4WEIGHT,
+      </if>
+      <if test="axlegroup5type != null">
+        AXLEGROUP5TYPE,
+      </if>
+      <if test="axlegroup5weight != null">
+        AXLEGROUP5WEIGHT,
+      </if>
+      <if test="axlegroup6type != null">
+        AXLEGROUP6TYPE,
+      </if>
+      <if test="axlegroup6weight != null">
+        AXLEGROUP6WEIGHT,
+      </if>
+      <if test="axlegroup7type != null">
+        AXLEGROUP7TYPE,
+      </if>
+      <if test="axlegroup7weight != null">
+        AXLEGROUP7WEIGHT,
+      </if>
+      <if test="axlegroup8type != null">
+        AXLEGROUP8TYPE,
+      </if>
+      <if test="axlegroup8weight != null">
+        AXLEGROUP8WEIGHT,
+      </if>
+      <if test="axlegroup9type != null">
+        AXLEGROUP9TYPE,
+      </if>
+      <if test="axlegroup9weight != null">
+        AXLEGROUP9WEIGHT,
+      </if>
+      <if test="speed != null">
+        SPEED,
+      </if>
+      <if test="acceleration != null">
+        ACCELERATION,
+      </if>
+      <if test="fareaxlegroup1type != null">
+        FAREAXLEGROUP1TYPE,
+      </if>
+      <if test="fareaxlegroup2type != null">
+        FAREAXLEGROUP2TYPE,
+      </if>
+      <if test="fareaxlegroup3type != null">
+        FAREAXLEGROUP3TYPE,
+      </if>
+      <if test="fareaxlegroup4type != null">
+        FAREAXLEGROUP4TYPE,
+      </if>
+      <if test="fareaxlegroup5type != null">
+        FAREAXLEGROUP5TYPE,
+      </if>
+      <if test="fareaxlegroup6type != null">
+        FAREAXLEGROUP6TYPE,
+      </if>
+      <if test="fareaxlegroup7type != null">
+        FAREAXLEGROUP7TYPE,
+      </if>
+      <if test="fareaxlegroup8type != null">
+        FAREAXLEGROUP8TYPE,
+      </if>
+      <if test="fareaxlegroup9type != null">
+        FAREAXLEGROUP9TYPE,
+      </if>
+      <if test="weightddhm != null">
+        WEIGHTDDHM,
+      </if>
+      <if test="entryaxlegroups != null">
+        ENTRYAXLEGROUPS,
+      </if>
+      <if test="entryaxlegroup1type != null">
+        ENTRYAXLEGROUP1TYPE,
+      </if>
+      <if test="entryaxlegroup2type != null">
+        ENTRYAXLEGROUP2TYPE,
+      </if>
+      <if test="entryaxlegroup3type != null">
+        ENTRYAXLEGROUP3TYPE,
+      </if>
+      <if test="entryaxlegroup4type != null">
+        ENTRYAXLEGROUP4TYPE,
+      </if>
+      <if test="entryaxlegroup5type != null">
+        ENTRYAXLEGROUP5TYPE,
+      </if>
+      <if test="entryaxlegroup6type != null">
+        ENTRYAXLEGROUP6TYPE,
+      </if>
+      <if test="entryaxlegroup7type != null">
+        ENTRYAXLEGROUP7TYPE,
+      </if>
+      <if test="entryaxlegroup8type != null">
+        ENTRYAXLEGROUP8TYPE,
+      </if>
+      <if test="entryaxlegroup9type != null">
+        ENTRYAXLEGROUP9TYPE,
+      </if>
+      <if test="picturecommenttype != null">
+        PICTURECOMMENTTYPE,
+      </if>
+      <if test="detectaxles != null">
+        DETECTAXLES,
+      </if>
+      <if test="isoverload != null">
+        ISOVERLOAD,
+      </if>
+      <if test="isspecialtrunk != null">
+        ISSPECIALTRUNK,
+      </if>
+      <if test="limitweight != null">
+        LIMITWEIGHT,
+      </if>
+      <if test="fareaxlegroup1weight != null">
+        FAREAXLEGROUP1WEIGHT,
+      </if>
+      <if test="fareaxlegroup2weight != null">
+        FAREAXLEGROUP2WEIGHT,
+      </if>
+      <if test="fareaxlegroup3weight != null">
+        FAREAXLEGROUP3WEIGHT,
+      </if>
+      <if test="fareaxlegroup4weight != null">
+        FAREAXLEGROUP4WEIGHT,
+      </if>
+      <if test="fareaxlegroup5weight != null">
+        FAREAXLEGROUP5WEIGHT,
+      </if>
+      <if test="fareaxlegroup6weight != null">
+        FAREAXLEGROUP6WEIGHT,
+      </if>
+      <if test="fareaxlegroup7weight != null">
+        FAREAXLEGROUP7WEIGHT,
+      </if>
+      <if test="fareaxlegroup8weight != null">
+        FAREAXLEGROUP8WEIGHT,
+      </if>
+      <if test="fareaxlegroup9weight != null">
+        FAREAXLEGROUP9WEIGHT,
+      </if>
+      <if test="entryaxlegroup1weight != null">
+        ENTRYAXLEGROUP1WEIGHT,
+      </if>
+      <if test="entryaxlegroup2weight != null">
+        ENTRYAXLEGROUP2WEIGHT,
+      </if>
+      <if test="entryaxlegroup3weight != null">
+        ENTRYAXLEGROUP3WEIGHT,
+      </if>
+      <if test="entryaxlegroup4weight != null">
+        ENTRYAXLEGROUP4WEIGHT,
+      </if>
+      <if test="entryaxlegroup5weight != null">
+        ENTRYAXLEGROUP5WEIGHT,
+      </if>
+      <if test="entryaxlegroup6weight != null">
+        ENTRYAXLEGROUP6WEIGHT,
+      </if>
+      <if test="entryaxlegroup7weight != null">
+        ENTRYAXLEGROUP7WEIGHT,
+      </if>
+      <if test="entryaxlegroup8weight != null">
+        ENTRYAXLEGROUP8WEIGHT,
+      </if>
+      <if test="entryaxlegroup9weight != null">
+        ENTRYAXLEGROUP9WEIGHT,
+      </if>
+      <if test="fareaxlegroups != null">
+        FAREAXLEGROUPS,
+      </if>
+      <if test="discountfare != null">
+        DISCOUNTFARE,
+      </if>
+      <if test="cpucardnetwork != null">
+        CPUCARDNETWORK,
+      </if>
+      <if test="cpucardno != null">
+        CPUCARDNO,
+      </if>
+      <if test="cpucardtype != null">
+        CPUCARDTYPE,
+      </if>
+      <if test="flagstanum != null">
+        FLAGSTANUM,
+      </if>
+      <if test="flagsta != null">
+        FLAGSTA,
+      </if>
+      <if test="byField1 != null">
+        BY_FIELD1,
+      </if>
+      <if test="qrtransid != null">
+        QRTRANSID,
+      </if>
+      <if test="qrpayfare != null">
+        QRPAYFARE,
+      </if>
+      <if test="qrpaytype != null">
+        QRPAYTYPE,
+      </if>
+      <if test="cflag1 != null">
+        CFLAG1,
+      </if>
+      <if test="cflag2 != null">
+        CFLAG2,
+      </if>
+      <if test="uploadflag != null">
+        UPLOADFLAG,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="netno != null">
+        #{netno,jdbcType=CHAR},
+      </if>
+      <if test="siteno != null">
+        #{siteno,jdbcType=CHAR},
+      </if>
+      <if test="laneno != null">
+        #{laneno,jdbcType=CHAR},
+      </if>
+      <if test="lanetype != null">
+        #{lanetype,jdbcType=CHAR},
+      </if>
+      <if test="lanemode != null">
+        #{lanemode,jdbcType=CHAR},
+      </if>
+      <if test="cetc != null">
+        #{cetc,jdbcType=CHAR},
+      </if>
+      <if test="jobno != null">
+        #{jobno,jdbcType=CHAR},
+      </if>
+      <if test="jobbegin != null">
+        #{jobbegin,jdbcType=TIMESTAMP},
+      </if>
+      <if test="squadno != null">
+        #{squadno,jdbcType=CHAR},
+      </if>
+      <if test="staffno != null">
+        #{staffno,jdbcType=CHAR},
+      </if>
+      <if test="staffname != null">
+        #{staffname,jdbcType=CHAR},
+      </if>
+      <if test="transactiondate != null">
+        #{transactiondate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="transactionno != null">
+        #{transactionno,jdbcType=CHAR},
+      </if>
+      <if test="indxno != null">
+        #{indxno,jdbcType=CHAR},
+      </if>
+      <if test="obstcsc != null">
+        #{obstcsc,jdbcType=CHAR},
+      </if>
+      <if test="obsmop != null">
+        #{obsmop,jdbcType=CHAR},
+      </if>
+      <if test="obssequence != null">
+        #{obssequence,jdbcType=CHAR},
+      </if>
+      <if test="obspassage != null">
+        #{obspassage,jdbcType=CHAR},
+      </if>
+      <if test="classno != null">
+        #{classno,jdbcType=CHAR},
+      </if>
+      <if test="farenetno != null">
+        #{farenetno,jdbcType=CHAR},
+      </if>
+      <if test="faresiteno != null">
+        #{faresiteno,jdbcType=CHAR},
+      </if>
+      <if test="entrynetno != null">
+        #{entrynetno,jdbcType=CHAR},
+      </if>
+      <if test="entrysiteno != null">
+        #{entrysiteno,jdbcType=CHAR},
+      </if>
+      <if test="entrylanetype != null">
+        #{entrylanetype,jdbcType=CHAR},
+      </if>
+      <if test="entrylaneno != null">
+        #{entrylaneno,jdbcType=CHAR},
+      </if>
+      <if test="entrystaffno != null">
+        #{entrystaffno,jdbcType=CHAR},
+      </if>
+      <if test="entryclassno != null">
+        #{entryclassno,jdbcType=CHAR},
+      </if>
+      <if test="entryvehicleplate != null">
+        #{entryvehicleplate,jdbcType=CHAR},
+      </if>
+      <if test="entrydate != null">
+        #{entrydate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="entryjobno != null">
+        #{entryjobno,jdbcType=CHAR},
+      </if>
+      <if test="entrymopno != null">
+        #{entrymopno,jdbcType=CHAR},
+      </if>
+      <if test="mopno != null">
+        #{mopno,jdbcType=CHAR},
+      </if>
+      <if test="ticketno != null">
+        #{ticketno,jdbcType=CHAR},
+      </if>
+      <if test="faretblversion != null">
+        #{faretblversion,jdbcType=CHAR},
+      </if>
+      <if test="prixtotal != null">
+        #{prixtotal,jdbcType=DECIMAL},
+      </if>
+      <if test="prixpartial != null">
+        #{prixpartial,jdbcType=DECIMAL},
+      </if>
+      <if test="mopdetail != null">
+        #{mopdetail,jdbcType=CHAR},
+      </if>
+      <if test="codeoctal != null">
+        #{codeoctal,jdbcType=CHAR},
+      </if>
+      <if test="tcscno != null">
+        #{tcscno,jdbcType=CHAR},
+      </if>
+      <if test="tcscversion != null">
+        #{tcscversion,jdbcType=CHAR},
+      </if>
+      <if test="cartridgeno != null">
+        #{cartridgeno,jdbcType=CHAR},
+      </if>
+      <if test="tcscorderno != null">
+        #{tcscorderno,jdbcType=CHAR},
+      </if>
+      <if test="cartridgecycleno != null">
+        #{cartridgecycleno,jdbcType=CHAR},
+      </if>
+      <if test="paycscno != null">
+        #{paycscno,jdbcType=CHAR},
+      </if>
+      <if test="exitvehicleplate != null">
+        #{exitvehicleplate,jdbcType=CHAR},
+      </if>
+      <if test="parvehicleplate != null">
+        #{parvehicleplate,jdbcType=VARCHAR},
+      </if>
+      <if test="processtype != null">
+        #{processtype,jdbcType=CHAR},
+      </if>
+      <if test="coverweight != null">
+        #{coverweight,jdbcType=CHAR},
+      </if>
+      <if test="invoicetype != null">
+        #{invoicetype,jdbcType=CHAR},
+      </if>
+      <if test="equipstatus != null">
+        #{equipstatus,jdbcType=CHAR},
+      </if>
+      <if test="cflag != null">
+        #{cflag,jdbcType=CHAR},
+      </if>
+      <if test="fareclassno != null">
+        #{fareclassno,jdbcType=CHAR},
+      </if>
+      <if test="shiftno != null">
+        #{shiftno,jdbcType=CHAR},
+      </if>
+      <if test="imagefile != null">
+        #{imagefile,jdbcType=CHAR},
+      </if>
+      <if test="routeno != null">
+        #{routeno,jdbcType=CHAR},
+      </if>
+      <if test="fareaxles != null">
+        #{fareaxles,jdbcType=DECIMAL},
+      </if>
+      <if test="detectweight != null">
+        #{detectweight,jdbcType=DECIMAL},
+      </if>
+      <if test="overweight != null">
+        #{overweight,jdbcType=DECIMAL},
+      </if>
+      <if test="overweighttype != null">
+        #{overweighttype,jdbcType=CHAR},
+      </if>
+      <if test="entryaxles != null">
+        #{entryaxles,jdbcType=VARCHAR},
+      </if>
+      <if test="entryweight != null">
+        #{entryweight,jdbcType=DECIMAL},
+      </if>
+      <if test="entryoverweight != null">
+        #{entryoverweight,jdbcType=DECIMAL},
+      </if>
+      <if test="entryoverweighttype != null">
+        #{entryoverweighttype,jdbcType=CHAR},
+      </if>
+      <if test="entryparvehicleplate != null">
+        #{entryparvehicleplate,jdbcType=VARCHAR},
+      </if>
+      <if test="picturecomment != null">
+        #{picturecomment,jdbcType=VARCHAR},
+      </if>
+      <if test="picturecomment2 != null">
+        #{picturecomment2,jdbcType=VARCHAR},
+      </if>
+      <if test="weightmode != null">
+        #{weightmode,jdbcType=CHAR},
+      </if>
+      <if test="parvehicleplatecolor != null">
+        #{parvehicleplatecolor,jdbcType=CHAR},
+      </if>
+      <if test="distance != null">
+        #{distance,jdbcType=DECIMAL},
+      </if>
+      <if test="computerate != null">
+        #{computerate,jdbcType=DECIMAL},
+      </if>
+      <if test="fareweight != null">
+        #{fareweight,jdbcType=DECIMAL},
+      </if>
+      <if test="overweightfare != null">
+        #{overweightfare,jdbcType=DECIMAL},
+      </if>
+      <if test="axlegroups != null">
+        #{axlegroups,jdbcType=DECIMAL},
+      </if>
+      <if test="axlegroup1type != null">
+        #{axlegroup1type,jdbcType=CHAR},
+      </if>
+      <if test="axlegroup1weight != null">
+        #{axlegroup1weight,jdbcType=DECIMAL},
+      </if>
+      <if test="axlegroup2type != null">
+        #{axlegroup2type,jdbcType=CHAR},
+      </if>
+      <if test="axlegroup2weight != null">
+        #{axlegroup2weight,jdbcType=DECIMAL},
+      </if>
+      <if test="axlegroup3type != null">
+        #{axlegroup3type,jdbcType=CHAR},
+      </if>
+      <if test="axlegroup3weight != null">
+        #{axlegroup3weight,jdbcType=DECIMAL},
+      </if>
+      <if test="axlegroup4type != null">
+        #{axlegroup4type,jdbcType=CHAR},
+      </if>
+      <if test="axlegroup4weight != null">
+        #{axlegroup4weight,jdbcType=DECIMAL},
+      </if>
+      <if test="axlegroup5type != null">
+        #{axlegroup5type,jdbcType=CHAR},
+      </if>
+      <if test="axlegroup5weight != null">
+        #{axlegroup5weight,jdbcType=DECIMAL},
+      </if>
+      <if test="axlegroup6type != null">
+        #{axlegroup6type,jdbcType=CHAR},
+      </if>
+      <if test="axlegroup6weight != null">
+        #{axlegroup6weight,jdbcType=DECIMAL},
+      </if>
+      <if test="axlegroup7type != null">
+        #{axlegroup7type,jdbcType=CHAR},
+      </if>
+      <if test="axlegroup7weight != null">
+        #{axlegroup7weight,jdbcType=DECIMAL},
+      </if>
+      <if test="axlegroup8type != null">
+        #{axlegroup8type,jdbcType=CHAR},
+      </if>
+      <if test="axlegroup8weight != null">
+        #{axlegroup8weight,jdbcType=DECIMAL},
+      </if>
+      <if test="axlegroup9type != null">
+        #{axlegroup9type,jdbcType=CHAR},
+      </if>
+      <if test="axlegroup9weight != null">
+        #{axlegroup9weight,jdbcType=DECIMAL},
+      </if>
+      <if test="speed != null">
+        #{speed,jdbcType=DECIMAL},
+      </if>
+      <if test="acceleration != null">
+        #{acceleration,jdbcType=DECIMAL},
+      </if>
+      <if test="fareaxlegroup1type != null">
+        #{fareaxlegroup1type,jdbcType=CHAR},
+      </if>
+      <if test="fareaxlegroup2type != null">
+        #{fareaxlegroup2type,jdbcType=CHAR},
+      </if>
+      <if test="fareaxlegroup3type != null">
+        #{fareaxlegroup3type,jdbcType=CHAR},
+      </if>
+      <if test="fareaxlegroup4type != null">
+        #{fareaxlegroup4type,jdbcType=CHAR},
+      </if>
+      <if test="fareaxlegroup5type != null">
+        #{fareaxlegroup5type,jdbcType=CHAR},
+      </if>
+      <if test="fareaxlegroup6type != null">
+        #{fareaxlegroup6type,jdbcType=CHAR},
+      </if>
+      <if test="fareaxlegroup7type != null">
+        #{fareaxlegroup7type,jdbcType=CHAR},
+      </if>
+      <if test="fareaxlegroup8type != null">
+        #{fareaxlegroup8type,jdbcType=CHAR},
+      </if>
+      <if test="fareaxlegroup9type != null">
+        #{fareaxlegroup9type,jdbcType=CHAR},
+      </if>
+      <if test="weightddhm != null">
+        #{weightddhm,jdbcType=TIMESTAMP},
+      </if>
+      <if test="entryaxlegroups != null">
+        #{entryaxlegroups,jdbcType=DECIMAL},
+      </if>
+      <if test="entryaxlegroup1type != null">
+        #{entryaxlegroup1type,jdbcType=CHAR},
+      </if>
+      <if test="entryaxlegroup2type != null">
+        #{entryaxlegroup2type,jdbcType=CHAR},
+      </if>
+      <if test="entryaxlegroup3type != null">
+        #{entryaxlegroup3type,jdbcType=CHAR},
+      </if>
+      <if test="entryaxlegroup4type != null">
+        #{entryaxlegroup4type,jdbcType=CHAR},
+      </if>
+      <if test="entryaxlegroup5type != null">
+        #{entryaxlegroup5type,jdbcType=CHAR},
+      </if>
+      <if test="entryaxlegroup6type != null">
+        #{entryaxlegroup6type,jdbcType=CHAR},
+      </if>
+      <if test="entryaxlegroup7type != null">
+        #{entryaxlegroup7type,jdbcType=CHAR},
+      </if>
+      <if test="entryaxlegroup8type != null">
+        #{entryaxlegroup8type,jdbcType=CHAR},
+      </if>
+      <if test="entryaxlegroup9type != null">
+        #{entryaxlegroup9type,jdbcType=CHAR},
+      </if>
+      <if test="picturecommenttype != null">
+        #{picturecommenttype,jdbcType=CHAR},
+      </if>
+      <if test="detectaxles != null">
+        #{detectaxles,jdbcType=DECIMAL},
+      </if>
+      <if test="isoverload != null">
+        #{isoverload,jdbcType=CHAR},
+      </if>
+      <if test="isspecialtrunk != null">
+        #{isspecialtrunk,jdbcType=CHAR},
+      </if>
+      <if test="limitweight != null">
+        #{limitweight,jdbcType=DECIMAL},
+      </if>
+      <if test="fareaxlegroup1weight != null">
+        #{fareaxlegroup1weight,jdbcType=DECIMAL},
+      </if>
+      <if test="fareaxlegroup2weight != null">
+        #{fareaxlegroup2weight,jdbcType=DECIMAL},
+      </if>
+      <if test="fareaxlegroup3weight != null">
+        #{fareaxlegroup3weight,jdbcType=DECIMAL},
+      </if>
+      <if test="fareaxlegroup4weight != null">
+        #{fareaxlegroup4weight,jdbcType=DECIMAL},
+      </if>
+      <if test="fareaxlegroup5weight != null">
+        #{fareaxlegroup5weight,jdbcType=DECIMAL},
+      </if>
+      <if test="fareaxlegroup6weight != null">
+        #{fareaxlegroup6weight,jdbcType=DECIMAL},
+      </if>
+      <if test="fareaxlegroup7weight != null">
+        #{fareaxlegroup7weight,jdbcType=DECIMAL},
+      </if>
+      <if test="fareaxlegroup8weight != null">
+        #{fareaxlegroup8weight,jdbcType=DECIMAL},
+      </if>
+      <if test="fareaxlegroup9weight != null">
+        #{fareaxlegroup9weight,jdbcType=DECIMAL},
+      </if>
+      <if test="entryaxlegroup1weight != null">
+        #{entryaxlegroup1weight,jdbcType=DECIMAL},
+      </if>
+      <if test="entryaxlegroup2weight != null">
+        #{entryaxlegroup2weight,jdbcType=DECIMAL},
+      </if>
+      <if test="entryaxlegroup3weight != null">
+        #{entryaxlegroup3weight,jdbcType=DECIMAL},
+      </if>
+      <if test="entryaxlegroup4weight != null">
+        #{entryaxlegroup4weight,jdbcType=DECIMAL},
+      </if>
+      <if test="entryaxlegroup5weight != null">
+        #{entryaxlegroup5weight,jdbcType=DECIMAL},
+      </if>
+      <if test="entryaxlegroup6weight != null">
+        #{entryaxlegroup6weight,jdbcType=DECIMAL},
+      </if>
+      <if test="entryaxlegroup7weight != null">
+        #{entryaxlegroup7weight,jdbcType=DECIMAL},
+      </if>
+      <if test="entryaxlegroup8weight != null">
+        #{entryaxlegroup8weight,jdbcType=DECIMAL},
+      </if>
+      <if test="entryaxlegroup9weight != null">
+        #{entryaxlegroup9weight,jdbcType=DECIMAL},
+      </if>
+      <if test="fareaxlegroups != null">
+        #{fareaxlegroups,jdbcType=DECIMAL},
+      </if>
+      <if test="discountfare != null">
+        #{discountfare,jdbcType=DECIMAL},
+      </if>
+      <if test="cpucardnetwork != null">
+        #{cpucardnetwork,jdbcType=CHAR},
+      </if>
+      <if test="cpucardno != null">
+        #{cpucardno,jdbcType=CHAR},
+      </if>
+      <if test="cpucardtype != null">
+        #{cpucardtype,jdbcType=CHAR},
+      </if>
+      <if test="flagstanum != null">
+        #{flagstanum,jdbcType=DECIMAL},
+      </if>
+      <if test="flagsta != null">
+        #{flagsta,jdbcType=VARCHAR},
+      </if>
+      <if test="byField1 != null">
+        #{byField1,jdbcType=DECIMAL},
+      </if>
+      <if test="qrtransid != null">
+        #{qrtransid,jdbcType=VARCHAR},
+      </if>
+      <if test="qrpayfare != null">
+        #{qrpayfare,jdbcType=VARCHAR},
+      </if>
+      <if test="qrpaytype != null">
+        #{qrpaytype,jdbcType=VARCHAR},
+      </if>
+      <if test="cflag1 != null">
+        #{cflag1,jdbcType=CHAR},
+      </if>
+      <if test="cflag2 != null">
+        #{cflag2,jdbcType=CHAR},
+      </if>
+      <if test="uploadflag != null">
+        #{uploadflag,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+
 </mapper>

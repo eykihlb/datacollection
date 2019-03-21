@@ -13,7 +13,9 @@ public interface DataTransactionMapper {
     List<DataTransaction> selectByDays(Map<String,Object> map);
     List<DataTransaction> selectMissDate();
     Integer updateRecord(DataTransaction dataTransaction);
-
+    Integer count(Map<String,Object> map);
     Integer updateBatch(List<DataTransaction> list);
     Integer updateUploadFlag(DataTransaction dataTransaction);
+    DataTransaction selectPlate(Map<String,Object> map);
+    int insertSelective(DataTransaction dataTransaction);
 }
